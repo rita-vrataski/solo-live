@@ -146,7 +146,7 @@ function refreshDriver() {
 	
     
 	
-	
+	/*
 		$.ajax({
 				url: '/getCookie'
 				, dataType: 'json'
@@ -164,7 +164,7 @@ function refreshDriver() {
 			previousDriver = selectedDriverId;
         }
     }
-		
+	*/	
 	
 	
     if (driver != null) {
