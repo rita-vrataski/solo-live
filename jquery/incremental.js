@@ -107,8 +107,8 @@ function genTtod() {
         for (var i = 0; i < drivers.length; i++) {
             if (drivers[i].name == run.driver && drivers[i].car.number == run.car.number) {
                 selectedDriverId = drivers[i].id;
-                $.mobile.changePage('#page-driver');
                 activePage = 'driver';
+				$.mobile.changePage('#page-driver');
                 refreshDriver();
             }
         }
@@ -135,7 +135,7 @@ function refreshDriver() {
     $('#driver-lastupdated').text(lastpoll);
     var driver = null;
 	
-	/*
+	
 	for (var i = 0; i < drivers.length; i++) {
 		
         if (drivers[i].id == selectedDriverId) {
@@ -143,7 +143,7 @@ function refreshDriver() {
 			previousDriver = selectedDriverId;
         }
     }
-	*/
+	
 	
     
 	

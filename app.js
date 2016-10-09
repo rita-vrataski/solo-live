@@ -136,8 +136,8 @@ app.get('/historical', function (req, res) {
 
 app.get('/driverruns/:id', function (req, res) {
     var id = parseInt(req.params.id);
-	if (req.cookies.driverId == undefined) {res.clearCookie('driverId')}
-    res.cookie('driverId', id);
+	//if (req.cookies.driverId == undefined) {res.clearCookie('driverId')}
+    //res.cookie('driverId', id);
     var n = [];
     for (var i = 0; i < data.runs.length; i++) {
         if (data.runs[i].driverId == id) {
@@ -353,7 +353,7 @@ io.sockets.on('connection', function (socket) {
         socket.join('runs');
         var last20 = [], runCount = data.runs.length;
 
-        for (var i = (runCount < 21 ? 0 : (runCount - 21)) ; i < runCount; i++) {
+        for (var i = (runCount < 36 ? 0 : (runCount - 36)) ; i < runCount; i++) {
             last20.push(data.runs[i]);
         }
         socket.emit('runs', { runs: last20, lastpoll: data.poller.lastpoll.formatDate('HH:mm:ss'), runcount: runCount });
