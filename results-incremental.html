@@ -1,0 +1,627 @@
+﻿<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>SCCA Hawaii Solo Live</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-startup-image" href="/images/axtime-ios-startup-748x1024.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="/images/axtime-ios-startup-768x1004-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="/images/axtime-ios-startup-320x460.png" media="screen and (max-device-width: 320px)">
+    <link rel="apple-touch-icon" href="/images/axtime-apple-touch-icon-57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/axtime-apple-touch-icon-72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/axtime-apple-touch-icon-114.png" /> 
+	<link rel="stylesheet" href="/v1.3/jquery.mobile-1.3.0.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+	<script src="/jquery-1.9.1.min.js"></script>
+	<script src="/jquery.mobile-1.3.0.min.js"></script>
+	<script src="/config" type="text/javascript"></script>
+    <script src="/incremental.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head> 
+<body> 
+
+	<script src="/reload/reload.js"></script>
+
+
+    <div data-role="page" id="page-results">
+        <div data-role="header" data-position="fixed">
+            <a href="javascript:history.back()" data-ajax="true" data-icon="arrow-l" data-reverse="true">Back</a>
+			<!--<a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a> -->
+			<!--<a href="/index" data-ajax="false" data-icon="arrow-l" data-reverse="true">Home</a>-->
+            
+			<h1>Live Results</h1>
+            
+			
+			<a data-role="button" id="btn-showdetails" data-icon="check" data-inline="true" class="ui-btn-active">Details</a>
+			
+			
+			
+            <div data-role="navbar">
+                <ul><li><a href="#" id="btn-raw" data-theme="e" class="ui-btn-active btn-results">Overall</a></li>
+                    <li><a id="btn-class" href="#" data-theme="e" class="btn-results">Class</a></li>
+                    <li><a id="btn-pax" href="#" data-theme="e" class="btn-results">PAX</a></li>
+                    <!--<li><a href="/runs" data-ajax="false" id="btn-runs" href="#" data-theme="e">Runs</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div data-role="content" style="padding-top:0px;">
+           <!--<div style="text-align:center;"><img src="/images/logo-100.png" /></div>-->
+		   <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" alt="SCCA Logo" /></div>
+            <!-- <div id="startmessage">
+                <div  class="ui-content ui-body-a">
+                    
+                    <p>
+					In using the SCCA Hawaii Solo Live website:
+					<ul>
+							<li>I understand that the Solo Live results are unofficial</li>
+							<li>I agree to not view the Solo Live website while in a moving vehicle</li>
+							<li>I agree to not view the Solo Live website while at my designated work assignment</li>
+							<li>I understand that any safety incidents directly related to viewing the Solo Live website while driving or working may result in the removal of the Solo Live website</li>
+						
+                        </ul>
+                    </p>
+                    <p>
+                        <a id="btn-hidemessage" data-role="button">I agree with these terms</a>
+                    </p>
+                </div>
+            </div> -->
+            <div id="resultspanel">
+                <p id="info" style="margin-top:4px;margin-bottom:4px;"><strong>Welcome to SCCA Hawaii Solo Live!</strong></p><p class="ui-li-desc details" style="margin-left:6px;">Do not use while operating a moving vehicle.<br />Results are unofficial.<br /># of Runs: <strong><span id="results-runcount">-</span></strong> -  Updated: <strong><span id="results-lastupdated" class="lastpoll">-</span></strong> </p>
+                <ul id="classlist" class="class-select"><li>Loading...</li></ul>
+                <p style="clear:both;"><a id="btn-selectclass" data-role="button" data-theme="b">Choose a Different Class</a></p>
+                <ul id="resulttimes" data-role="listview" data-divider-theme="e" class="rank-overall" style="clear:both;"><li>Loading results...</li></ul>
+            </div>
+        </div> 
+        <div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
+            <div data-role="navbar" class="custom-icons">
+                <ul>
+                    <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
+                    <li><a href="#page-ttod" class="nb-ttod" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
+                    <li><a href="#page-runs" class="nb-runs" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
+                    <li><a href="/" class="nb-results ui-btn-active ui-state-persist" data-transition="none" data-icon="custom">Results</a></li>
+                </ul>
+
+            </div>
+        </div>  
+    </div>
+
+    <div data-role="dialog" id="dlg-carsearch">
+        <div data-role="header">
+            <h1><span id="carsearch-label">Car Search</span></h1>
+        </div>
+        <div data-role="content">
+            <center>
+            <div data-role="controlgroup" data-type="horizontal">
+                <button class="btn-number" data-inline="true">1</button>
+                <button class="btn-number" data-inline="true">2</button>
+                <button class="btn-number" data-inline="true">3</button>
+            </div>
+			<div data-role="controlgroup" data-type="horizontal">
+                <button class="btn-number" data-inline="true">4</button>
+                <button class="btn-number" data-inline="true">5</button>
+                <button class="btn-number" data-inline="true">6</button>
+				
+                </div>
+                <div data-role="controlgroup" data-type="horizontal">
+                <button class="btn-number" data-inline="true">7</button>
+                <button class="btn-number" data-inline="true">8</button>
+                <button class="btn-number" data-inline="true">9</button>
+				</div>
+            <div data-role="controlgroup" data-type="horizontal">
+                <button class="btn-number" data-inline="true" data-icon="arrow-l">Delete</button>
+				<button class="btn-number" data-inline="true">0</button>
+                <button class="btn-number" data-inline="true" data-icon="delete">Clear</button>
+            </div>
+            </center>
+            <h1>Cars</h1>
+		    <ul data-role="listview" id="carsearch-list"><li>Loading drivers...</li></ul>
+        </div>
+        <div data-role="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page-results" data-role="button" data-theme="b">Cancel</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div data-role="page" id="page-driver">
+        <div data-role="header">
+            <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a>
+			<!--<a href="/index" data-role="button" data-ajax="false" data-icon="home" data-reverse="true">Home</a>-->
+            <h1 id="drivername">Live Results</h1>
+            <!--<a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a>-->
+        </div>
+        <div data-role="content">
+           <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" /></div>
+           <p style="text-align:left"><span id="driverinfo" /></p>
+		   <p id="P1"  class="ui-li-desc details" style="margin-left:4px">Updated: <strong><span id="driver-lastupdated" class="lastpoll">-</span></strong></p>
+		   
+           
+            <div class="ui-grid-b"><div class="ui-block-a" style="text-align:center;">Overall<div class="driver-ranks"><span id="rankoverall">-</span></div></div>
+            <div class="ui-block-b" style="text-align:center;"><span id="lbl-classname">Class</span><div class="driver-ranks"><span id="rankclass">-</span></div></div>
+            <div class="ui-block-c" style="text-align:center;">PAX Overall<div class="driver-ranks"><span id="rankpax">-</span></div></div>
+            </div>
+            <ul data-role="listview" id="drivertimes" data-inset="true" data-divider-theme="d">
+                <li data-role="list-divider">Times (PAX)</li>
+            </ul>
+            <!-- <ul data-role="listview" id="dtlegend" data-inset="true" data-divider-theme="d">
+                <li data-role="list-divider">Legend</li>
+                <li data-theme="b" data-icon="check"><a href="#">Best Time</a></li>
+                <li data-theme="a" data-icon="delete"><a href="#">DNF</a></li>
+                <li data-theme="e" data-icon="alert"><a href="#">Rerun</a></li>
+            </ul> -->
+ 
+       </div>
+        <div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
+            <div data-role="navbar" class="custom-icons">
+                <ul>
+                    <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
+                    <li><a href="#page-ttod" class="nb-ttod" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
+					<li><a href="#page-runs" class="nb-runs" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
+                    <li><a href="/" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                </ul>
+
+            </div>
+        </div> 
+    </div>
+    <div data-role="page" id="page-runs">
+        <div data-role="header">
+            <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a>
+			<!--<a href="/results" data-role="button" data-ajax="false" data-icon="home" data-reverse="true">Home</a>-->
+            <h1>Runs</h1>
+        </div>
+        <div data-role="content">
+            <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" alt="AXti.me Logo" /></div>
+            <p id="P2" class="ui-li-desc details" style="margin-top:4px;margin-left:6px;margin-bottom:20px" ># of Runs: <strong><span id="runcount">-</span></strong> -  Updated: <strong><span id="lastupdated" class="lastpoll">-</span></strong> </p>
+         
+
+            <ul id="runslist" data-role="listview" data-divider-theme="e">
+                <li>Loading...</li>
+            </ul>
+        </div>
+        <div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
+            <div data-role="navbar" class="custom-icons">
+                <ul>
+                    <li><a href="#dlg-carsearch" class="nb-carsearch"  data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
+                    <li><a href="#page-ttod" class="nb-ttod"  data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
+                    <li><a href="#page-runs" class="nb-runs ui-btn-active ui-state-persist" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
+                    <li><a href="#page-results" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                </ul>
+
+            </div>
+        </div>  
+    </div>
+
+    <div data-role="page" id="page-ttod">
+        <div data-role="header">
+		    <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a>
+            
+            <h1>Top Times Of the Day</h1>
+			<!-- <a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a> -->
+			<!-- <a href="#page-ttod" data-role="button" data-icon="arrow-l" data-reverse="true">Refresh</a> -->
+        </div>
+        <div data-role="content">
+            <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" alt="AXti.me Logo" /></div>
+            <p id="P3" class="ui-li-desc details" style="margin-top:4px;margin-left:6px;margin-bottom:20px"># of Runs: <strong><span id="ttodruncount"></span></strong> -  Updated: <strong><span id="ttodlastupdated" class="lastpoll"></span></strong></p>
+            <div><ul id="ttodresults" data-role="listview" data-divider-theme="e"><li>Loading...</li></ul></div>
+        </div>
+        <div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
+            <div data-role="navbar" class="custom-icons">
+                <ul>
+                    <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
+                    <li><a href="#page-ttod" class="nb-ttod ui-btn-active ui-state-persist" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
+                    <li><a href="#page-runs" class="nb-runs" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
+                    <li><a href="/" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                </ul>
+
+            </div>
+        </div>  
+    </div>
+    <script type="text/javascript">
+        var lastpoll = 'na', totalruns = 0, loaded = [false, false, false], showRuns = 35, selectedDriverId = 0, previousDriverId = 0;
+        var runs = [], drivers = [], ttod = [], sort = 'overall', selectedClass=null;
+
+
+        var host = $.mobile.path.parseUrl(window.location.href);
+        var socket = io.connect('http://' + host.host);
+
+        var reconnectmsg = null;
+
+        socket.on('reconnecting', function () {
+            $('<div class="msg-reconnect ui-loading ui-loader ui-loader-verbose ui-overlay-shadow ui-body-b ui-corner-all"><span class="ui-icon ui-icon-loading"></span><h1>Reconnecting</h1></div>')
+                .css({
+                    'display': 'block', 'opacity': 0.96, 'margin-left': '0', 'margin-top': '0'
+                    , 'top': 100
+                    , 'left': $(window).width() / 2 - 100
+                }).appendTo($.mobile.pageContainer)
+                .delay(100);
+            socket.emit('init-results');
+			
+        });
+
+        socket.on('connect', function () { if (reconnectmsg != null) { $('.msg-reconnect').fadeOut(400, function () { $(this).remove(); }); } });
+        socket.on('reconnect', function () { $('.msg-reconnect').fadeOut(400, function () { $(this).remove(); }); });
+
+        socket.on('reconnect_failed', function () {
+            //TODO message this to the user
+            $('.msg-reconnect').fadeOut(400, function () { $(this).remove(); });
+        });
+
+        socket.on('init-results', handleInitResults);
+
+        socket.on('changes', handleChanges);
+
+        //        $('#page-ttod').bind('pageinit', function () {
+        //            console.log('ttod init');
+        //        });
+
+		
+		$('#page-driver').bind('pagehide', function (ev, ui) { 
+		      
+			  
+			  selectedDriverId = 0; 
+			  });
+        $('#page-driver').bind('pageshow', function () {
+            //selectedDriver = 14;
+            //refreshDriver();
+            //$('#runs').listview('refresh');
+            //activePage = 'driver';
+			
+			//lastDriver = data.drivers[i];
+			
+		
+
+        });
+		
+        $('#page-ttod').bind('pagehide', function () {
+            //console.log('hide ttod');
+            socket.removeListener('ttod', handleTtod);
+        });
+
+        $('#page-ttod').bind('pagebeforeshow', function () {
+            //console.log('ttod before show');
+            socket.emit('ttod', { doit: true });
+            socket.on('ttod', handleTtod);
+            activePage = 'ttod';
+        });
+
+        $('#page-results').bind('pageshow', function () {
+            $('#resulttimes').listview('refresh');
+            activePage = 'results';
+        });
+        $('#page-results').bind('pagehide', function (ev, ui) {
+            //socket.removeListener('results'); 
+        });
+        $('#page-results').bind('pageinit', function () {
+            activePage = 'results';
+            loaded[0] = true;
+            $('#btn-selectclass').hide();
+            $('#classlist').hide();
+            $("#btn-showdetails").click(toggleDetails);
+            $(".btn-results").click(toggleResults);
+            $('#btn-hidemessage').bind('click', function () {
+                $('#startmessage').hide();
+            });
+
+            $('#btn-selectclass').click(function () {
+                
+                selectedClass = null;
+                $('#classlist').show();//.listview('refresh');
+                $('#btn-selectclass').hide();
+                $('#resulttimes').hide();
+                sortClass();
+                
+            });
+            
+            //socket.emit('results', { doit: true });
+            //socket.on('results', handleResults);
+            socket.emit('init-results');
+			//socket.emit('changes');
+
+            //socket.on('changes', handleChanges);
+        });
+
+			
+        $('#page-runs').bind('pageshow', function () {
+            activePage = 'runs';
+            socket.emit('join-runs');
+            //socket.emit('init-runs', { doit: true });
+            socket.on('runs', handleRuns);
+            console.log('listening for runs');
+        });
+
+        $('#page-runs').bind('pagehide', function () {
+            socket.emit('leave-runs');
+        });
+
+
+        $('#dlg-carsearch').bind('pagehide', function (ev, ui) { search = '', dofilter(search); });
+
+        $('#dlg-carsearch').bind('pageinit', function () {
+            if (!loaded[0]) {
+                socket.emit('results', { doit: true });
+                socket.on('results', handleResults);
+            }
+            $('#dlg-carsearch .btn-number').bind('vclick', function () {
+                var b = $(this).text();
+                if (b.toLowerCase() == 'clr') {
+                    search = '';
+                    //dofilter('');
+                    //console.log('clear');
+                }
+                else if (b.toLowerCase() == 'del') {
+                    search = search.substr(0, search.length - 1);
+                }
+                else {
+                    search += b.toString();
+                    //console.log(search);
+                }
+
+                dofilter(search);
+
+            });
+        });
+
+        $('#dlg-carsearch').bind('pageshow', function () {
+            populateDriverSearch();
+        });
+
+        function populateDriverSearch() {
+            var el = $('#carsearch-list').empty();
+            var dd = drivers.sort(function (a, b) {
+                return parseInt(a.car.number) - parseInt(b.car.number);
+            });
+            for (var i = 0; i < dd.length; i++) {
+                var d = dd[i];
+
+                var itm = $('<li><a id="carsearch-' + d.id + '"><h3>' + d.car.number + ' - ' + d.name + '</h3>' + (d.runCount > 0 ? '<span class="ui-li-count">' + d.runCount + '</span>' : '') + '<p class="ui-li-aside" style="color:gray;font-size:16px;">' + d.car.description + '</p></a></li>').data('filtertext', d.car.number);
+                el.append(itm);
+            }
+            el.find('a').click(showDriver);
+            var ap = $.mobile.activePage;
+            if (ap != null && ap.attr('id') == 'dlg-carsearch') {
+                el.listview('refresh');
+
+            }
+
+        }
+
+        function getResultHtml(p) {
+            //p = participant record
+            return html = '<li id="p-' + p.id + '" class="' + (p.rankp == 0 ? 'paxexclude' : '') + ' ' + (p.ranko == 0 ? 'rawexclude' : '') + '"><a>'
+                + '<div class="carnumber">' + p.car.number + '</div>'
+                + '<div style="float:left;margin-right:12px;text-align:center;">'
+                + '<span class="rank rawrank">' + p.ranko + '</span>'
+                + '<span class="rank paxrank" style="color:red;">' + p.rankp + '</span>'
+                + '<span class="rank classrank" style="color:blue;">' + p.rankc + '</span><br/><div style="font-size:.6em;margin-top:-11px;">' + p.ranko + '-<span style="color:blue;">' + p.rankc + '</span>-<span style="color:red;">' + p.rankp + '</span></div></div>'
+                + '<h3 class="ui-li-heading">' + p.name + '</h3><p style="font-size:1.2em;">'
+                + '<span class="time rawtime">' + p.best + (p.ranko > 1 ? ('<span style="color:red;"> +' + p.rawDiffo + '</span><span style="color:red;font-size:.8em;"> +' + p.rawDiffp + '</span>') : '') + '</span>'
+                + '<span class="time paxtime">' + p.bestpax + (p.rankp > 1 ? ('<span style="color:red;"> +' + p.paxDiffo + '</span><span style="color:red;font-size:.8em;"> +' + p.paxDiffp + '</span>') : '') + '</span>'
+                + ( (p.superClass == 'PAX' ||  p.superClass == 'RK') ? ('<span class="time classtime">' + p.bestpax + (p.rankp > 1 ? ('<span style="color:red;"> +' + p.paxDiffo + '</span><span style="color:red;font-size:.8em;"> +' + p.paxDiffp + '</span>') : '') + '</span>'):('<span class="time classtime">' + (config.useSuperClassing ? p.best : p.best) + (p.rankc > 1 ? ('<span style="color:red;"> +' + p.classDiffo + '</span><span style="color:red;font-size:.8em;"> +' + p.classDiffp + '</span>') : '') + '</span>'))
+                + '</p><p class="ui-li-desc details">DNFs: ' + p.dnfCount + ', Re-runs:' + p.reruns + ', Cones:' + p.cones + '</br>' + p.axclass+ '</p><span class="ui-li-count">' + p.runCount + '</span>'
+                + '</a></li>';
+        }
+
+        
+        function sortPax() {
+            sort = 'pax';
+            var items = $('#resulttimes li').removeClass('ui-screen-hidden').sort(function (a, b) {
+                var aa = $(a).data('driver').rankp
+                    , bb = $(b).data('driver').rankp;
+                if (aa < bb) return -1;
+                if (aa > bb) return 1;
+                return 0;
+            });
+
+            $('#resulttimes').removeClass('rank-overall rank-class').addClass('rank-pax').append(items);
+        }
+        function sortRaw() {
+            sort = 'overall';
+            var items = $('#resulttimes li').removeClass('ui-screen-hidden').sort(function (a, b) {
+                var aa = $(a).data('driver').ranko
+                    , bb = $(b).data('driver').ranko;
+                if (aa < bb) return -1;
+                if (aa > bb) return 1;
+                return 0;
+            });
+            
+            $('#resulttimes').removeClass('rank-pax rank-class').addClass('rank-overall').append(items);
+        }
+
+        function sortClass(cls) {
+            sort = "class";
+            //console.log('sort class');
+            if (selectedClass == null) {
+                $('#classlist').show();
+                console.log('show chooser');
+            }
+            else {
+                //console.log('show class results');
+                var items = $('#resulttimes li').sort(function (a, b) {
+                    var aa = $(a).data('driver').rankc
+                        , bb = $(b).data('driver').rankc;
+                    if (aa < bb) return -1;
+                    if (aa > bb) return 1;
+                    return 0;
+                });
+
+                for (var i = 0; i < items.length; i++) {
+                    if ($(items[i]).data('driver').superClass != selectedClass) {
+                        $(items[i]).addClass('nonclass');
+                    } else {
+                        $(items[i]).removeClass('nonclass');
+                    }
+                }
+                $('#resulttimes').removeClass('rank-pax rank-overall').addClass('rank-class').append(items);
+
+            }
+        }
+        function resort() {
+            if (sort == 'pax') { sortPax(); }
+            else if (sort == 'class') { sortClass(); }
+            else sortRaw();
+        }
+
+        function handleChanges(data) {
+            console.log('changes received: ' + data.drivers.length);
+            //data = array of {drivers}
+            $('<div class="ui-loading ui-loader ui-loader-verbose ui-overlay-shadow ui-body-b ui-corner-all"><span class="ui-icon ui-icon-loading"></span><h1>Updating data</h1></div>')
+               .css({
+                   'display': 'block', 'opacity': 0.96, 'margin-left': '0', 'margin-top': '0'
+                   , 'top': 100
+                   , 'left': $(window).width() / 2 - 100
+               }).appendTo($.mobile.pageContainer)
+               .delay(100)
+               .fadeOut(400, function () {
+                   $(this).remove();
+               });
+            lastpoll = data.lastpoll;
+            totalruns = data.runcount;
+
+            //loop through changed drivers
+            for (var i = 0; i < data.drivers.length; i++) {
+                var drv = data.drivers[i];
+
+
+                //console.log(drv);
+                var el = $('#p-' + drv.id);
+                var html = getResultHtml(drv);
+                var li = $(html)
+                    .data('driver', drv)
+                    .bind('click',showDriver);
+                if (el.length == 0) {
+                    //new item
+                    drivers.push(drv);
+                    $('#resulttimes').append(li);
+                } else {
+                    for (var a = 0; a < drivers.length; a++) {
+                        if (drivers[a].id == data.drivers[i].id) {
+                            drivers[a] = data.drivers[i];
+                            break;
+                        }
+                    }
+                    el.replaceWith(li);
+                }
+                //I changed this: if (selectedDriverId == drv.id && activePage == 'driver') {
+                if (selectedDriverId == drv.id && activePage == 'driver') {
+                    refreshDriver();
+                }
+            }
+            resort();
+            $('#resulttimes').listview('refresh');
+            popClasses();
+            //console.log(data);
+            //genTimeChanges(data);
+            $('.lastpoll').text(lastpoll);
+            $('#results-runcount').text(totalruns);
+            //populateDriverSearch();
+        }
+        function handleInitResults(data) {
+            console.log('parsing new results data');
+
+            $('<div class="ui-loading ui-loader ui-loader-verbose ui-overlay-shadow ui-body-b ui-corner-all"><span class="ui-icon ui-icon-loading"></span><h1>Updating data</h1></div>')
+                .css({
+                    'display': 'block', 'opacity': 0.96, 'margin-left': '0', 'margin-top': '0'
+                    , 'top': 100
+                    , 'left': $(window).width() / 2 - 100
+                }).appendTo($.mobile.pageContainer)
+                .delay(100)
+                .fadeOut(400, function () {
+                    $(this).remove();
+                });
+            drivers = data.drivers;
+            lastpoll = data.lastpoll;
+            totalruns = data.runcount;
+            drivers.sort(function (a, b) {
+                return a.ranko < b.ranko ? -1 : a.ranko > b.ranko ? 1 : 0;
+            });
+
+            $('#resulttimes').empty();
+            for (var i = 0; i < data.drivers.length; i++) {
+                var html = getResultHtml(data.drivers[i]);
+                var li = $(html)
+                    .data('driver', data.drivers[i])
+                    .bind('click',showDriver);
+               
+                $('#resulttimes').append(li);
+            }
+            popClasses();
+            if (sort == 'pax') sortPax();
+            else if (sort == 'class') { sortClass(selectedClass); }
+        
+            $('#results-lastupdated').text(lastpoll);
+            $('#results-runcount').text(totalruns);
+            $('#resulttimes').listview('refresh');
+            populateDriverSearch();
+            
+        }
+        //function handleResults(data) {
+
+        //    //console.log('parsing new results data');
+        //    $('<div class="ui-loading ui-loader ui-loader-verbose ui-overlay-shadow ui-body-b ui-corner-all"><span class="ui-icon ui-icon-loading"></span><h1>Updating data</h1></div>')
+        //        .css({
+        //            'display': 'block', 'opacity': 0.96, 'margin-left': '0', 'margin-top': '0'
+        //            , 'top': 100
+        //            , 'left': $(window).width() / 2 - 100
+        //        }).appendTo($.mobile.pageContainer)
+        //        .delay(100)
+        //        .fadeOut(400, function () {
+        //            $(this).remove();
+        //        });
+        //    drivers = data.drivers;
+        //    lastpoll = data.lastpoll;
+        //    totalruns = data.runcount;
+        //    genTimes();
+        //    $('#results-lastupdated').text(lastpoll);
+        //    $('#results-runcount').text(totalruns);
+
+        //    populateDriverSearch();
+
+
+        //}
+
+        function handleTtod(data) {
+            
+            lastpoll = data.lastpoll;
+            totalruns = data.runcount;
+            ttod = data.ttod;
+            genTtod();
+            //$('#ttodresults').empty().html(html.join('')).listview('refresh');
+            $('#ttodlastupdated').text(lastpoll);
+            $('#ttodruncount').text(totalruns);
+        }
+
+        function handleRuns(data) {
+            
+            runs = data.runs;
+            lastpoll = data.lastpoll;
+            totalruns = data.runcount;
+            genRuns();
+            $('#lastupdated').text(lastpoll);
+            $('#runcount').text(totalruns);
+        }
+
+        function handleDriverRuns(data) {
+            //            console.log('parsing driver runs data');
+			
+            
+            runs = data.runs;
+            lastpoll = data.lastpoll;
+            //genDriver(data.drivers[i]);
+			refreshDriver();
+            $('#lastupdated').text(lastpoll);
+            $('#drivertimes').text(totalruns);
+        }
+
+        
+		
+
+       
+	   
+
+</script>
+</body>
+</html>
