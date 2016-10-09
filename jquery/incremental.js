@@ -108,7 +108,8 @@ function genTtod() {
             if (drivers[i].name == run.driver && drivers[i].car.number == run.car.number) {
                 selectedDriverId = drivers[i].id;
                 $.mobile.changePage('#page-driver');
-
+                activePage = 'driver';
+                refreshDriver();
             }
         }
     });
