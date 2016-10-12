@@ -168,7 +168,8 @@ app.get('/driverdata', function (req, res) {
 app.get('/', function (req, res) {
         
         res.sendFile(__dirname + '/results-incremental.html');
-		console.log("Cookies Found :  ", req.cookies);
+		//console.log("Width found :  ", req.width);
+		//console.log("Height found :  ", req.height);
 		
 		
 });
