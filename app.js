@@ -156,7 +156,7 @@ app.get('/driverdata', function (req, res) {
         }
     }
 
-    res.send({ driver: driver, runs: truns, lastupdated:data.poller.lastpoll.formatDate('hh:mm:ss'), runcount:data.runs.length });
+    res.send({ driver: driver, runs: truns, lastupdated:data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount:data.runs.length });
 });
 
 
@@ -205,13 +205,13 @@ if (settings.isLocal) {
             if (!data.results.nochanges) {
                 var runCount = data.runs.length; var last20 = [];
 
-                io.sockets.emit('changes', { drivers: data.changes, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: runCount });
-                io.sockets.emit('ttod', { ttod: data.ttod, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: runCount });
+                io.sockets.emit('changes', { drivers: data.changes, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: runCount });
+                io.sockets.emit('ttod', { ttod: data.ttod, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: runCount });
                 running = false;
 
                 //console.log('fswatch: runcount: ' + runCount);
                 /*if (settings.uploadToCloud) {
-                    var sendCfg = { drivers: [], runs: [], reload: false, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: runCount };
+                    var sendCfg = { drivers: [], runs: [], reload: false, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: runCount };
 
                     if (data.results.reload) {
                         sendCfg.reload = true;
@@ -232,12 +232,12 @@ if (settings.isLocal) {
                 for (var i = (runCount < 36 ? 0 : (runCount - 36)) ; i < runCount; i++) {
                     last20.push(data.runs[i]);
                 }
-                //io.sockets.emit('results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: runCount });
+                //io.sockets.emit('results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: runCount });
                 //var last20 = [];
                 //for (var i = (runCount < 21 ? 0 : (runCount - 21)) ; i < runCount; i++) {
                 //    last20.push(data.runs[i]);
                 //}
-                io.sockets.in('runs').emit('runs', { runs: last20, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: runCount });
+                io.sockets.in('runs').emit('runs', { runs: last20, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: runCount });
             }
             else {
                 //console.log('\tNO CHANGES');
@@ -250,12 +250,12 @@ if (settings.isLocal) {
 io.set('log level', 1);
 
 io.sockets.on('connection', function (socket) {
-    //socket.emit('ttod', { ttod: data.ttod, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: data.runs.length });
-    //socket.emit('results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: data.runs.length });
+    //socket.emit('ttod', { ttod: data.ttod, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
+    //socket.emit('results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
     settings.activeSockets++;
     console.log('Connected: ' + settings.activeSockets);
     
-    //socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: data.runs.length });
+    //socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
 
     socket.on('join-runs', function (d) {
         socket.join('runs');
@@ -264,28 +264,28 @@ io.sockets.on('connection', function (socket) {
         for (var i = (runCount < 36 ? 0 : (runCount - 36)) ; i < runCount; i++) {
             last20.push(data.runs[i]);
         }
-        socket.emit('runs', { runs: last20, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: runCount });
+        socket.emit('runs', { runs: last20, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: runCount });
     });
     socket.on('leave-runs', function (data) { socket.leave('runs'); });
 
     socket.on('ttod', function (d) {
-        socket.emit('ttod', { ttod: data.ttod, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: data.runs.length });
+        socket.emit('ttod', { ttod: data.ttod, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
     });
     socket.on('init-results', function (d) {
-        socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: data.runs.length });
+        socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
     });
 	
 	// Added this section below
 	socket.on('changes', function (d) {
-        socket.emit('changes', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: data.runs.length });
+        socket.emit('changes', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
     });
 	// Added this section above
 	
     socket.on('results', function (d) {
-        socket.emit('results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: data.runs.length });
+        socket.emit('results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
     });
     socket.on('init-runs', function (d) {
-        socket.emit('init-runs', { runs: data.runs, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss'), runcount: data.runs.length });
+        socket.emit('init-runs', { runs: data.runs, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
     });
 
     socket.on('disconnect', function () {
