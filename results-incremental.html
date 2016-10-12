@@ -66,7 +66,11 @@
                 </div>
             </div> -->
             <div id="resultspanel">
-                <p id="info" style="margin-top:4px;margin-bottom:4px;"><strong>Welcome to SCCA Hawaii Solo Live!</strong></p><p class="ui-li-desc details" style="margin-left:6px;">Do not use while operating a moving vehicle.<br />Results are unofficial.<br /># of Runs: <strong><span id="results-runcount">-</span></strong> -  Updated: <strong><span id="results-lastupdated" class="lastpoll">-</span></strong> </p>
+                <p id="info" style="margin-top:4px;margin-bottom:4px;"><strong>Welcome to SCCA Hawaii Solo Live!</strong></p><p class="ui-li-desc details" style="margin-left:6px;">Do not use while operating a moving vehicle.<br />Results are unofficial.<br /># of Runs: <strong><span id="results-runcount">-</span></strong> -  Updated: <strong><span id="results-lastupdated" class="lastpoll">-</span></strong> 
+				
+				<button>Display dimensions of document and window</button>
+				</p>
+				
                 <ul id="classlist" class="class-select"><li>Loading...</li></ul>
                 <p style="clear:both;"><a id="btn-selectclass" data-role="button" data-theme="b">Choose a Different Class</a></p>
                 <ul id="resulttimes" data-role="listview" data-divider-theme="e" class="rank-overall" style="clear:both;"><li>Loading results...</li></ul>
@@ -137,10 +141,7 @@
         <div data-role="content">
            <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" /></div>
            <p style="text-align:left"><span id="driverinfo" /></p>
-		   <p id="P1"  class="ui-li-desc details" style="margin-left:4px">Updated: <strong><span id="driver-lastupdated" class="lastpoll">-</span></strong>
-		   Width found: "javascript:$(window).width()"
-		   Height found: "javascript:$(window).height()"
-		   </p>
+		   <p id="P1"  class="ui-li-desc details" style="margin-left:4px">Updated: <strong><span id="driver-lastupdated" class="lastpoll">-</span></strong></p>
 		   
            
             <div class="ui-grid-b"><div class="ui-block-a" style="text-align:center;">Overall<div class="driver-ranks"><span id="rankoverall">-</span></div></div>
@@ -620,7 +621,16 @@
         }
 
         
-		
+$(document).ready(function(){
+    $("button").click(function(){
+        var txt = "";
+        txt += "Document width/height: " + $(document).width();
+        txt += "x" + $(document).height() + "\n";
+        txt += "Window width/height: " + $(window).width();
+        txt += "x" + $(window).height();
+        alert(txt);
+    });
+});		
 
        
 	   
