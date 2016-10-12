@@ -90,8 +90,7 @@ width: 42px!important; height: 30px!important; margin-left: -21px !important; bo
 }
 .ui-dialog .ui-dialog-contain { margin-top: 16px; }
 
-/*@media (min-width: 640px)*/
-@media (min-width: 1440px)
+@media (min-width: 640px)
 {
    /* .logo-horiz 
       {
@@ -106,8 +105,7 @@ width: 42px!important; height: 30px!important; margin-left: -21px !important; bo
 }
 
 
-/*@media (min-width: 767px) */
-@media (min-width: 1440px) 
+@media (min-width: 767px)
 {
       ul.class-select li {width:150px;height:60px;}
       ul.class-select li a {line-height:60px;font-size:24px;}
@@ -194,8 +192,8 @@ ul.class-select li a
     font-size: 50px;
     font-weight: bold;
 }
-/*@media (min-width: 600px)*/
-@media (min-width: 1440px)
+
+@media (min-width: 600px)
 {
    /* .logo-horiz 
       {
@@ -210,8 +208,7 @@ ul.class-select li a
       
 }
 
-/*@media (max-width:599px)*/
-@media (max-width:1439px)
+@media (max-width:599px)
 {
     .rankcontainer
     {
