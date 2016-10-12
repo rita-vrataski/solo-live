@@ -42,15 +42,6 @@ var server = http.createServer(app)
 
 settings.version = pjson.version;
 
-/*
-//production
-//LPR = ozOaSY61iyQf1S3wEbEXqM
-// GGR = YnL5mdlJDV8ZsWjxgtObay
-// SFR = 4DCYEe7jJs-0GT5brBifmH
-//settings.accessKey = 'YnL5mdlJDV8ZsWjxgtObay';
-//settings.cloudConfig.host = 'axtimelr.nodejitsu.com';
-//settings.cloudConfig.port = 80;
-*/
 
 if (settings.isLocal) {
     // do configs from file
@@ -185,73 +176,7 @@ app.get('/', function (req, res) {
 
 
 
-/*
-app.get('/uploadtoaxr', function (req, res) {
-    var connected = false;
-    console.log('Testing internet connection...');
 
-    http.get('http://www.autocrossresults.com/Content/mobile.css', function (nres) {
-        console.log(nres.statusCode);
-        res.sendFile(__dirname + '/upload.html');
-    }).on('error', function (e) {
-            console.log('error connecting: ' + e.message);
-            res.sendFile(__dirname + '/upload-nointernet.html');
-        });
-
-});
-*/
-/*
-app.post('/uploadtoaxr', function (req, res) {
-    var accessKey = 'AFE368157C07449B902E360CA910EDED'
-        , counts = true;//req.body.counts == 'yes';
-    //AFE368157C07449B902E360CA910EDED
-    var classes = [], start = new Date().getTime();
-    console.log('Uploading results to AutocrossResults.com...'.red)
-    // {name, index}
-    for (var i = 0; i < data.drivers.length; i++) {
-        var exists = false;
-        var driver = data.drivers[i];
-        for (var c = 0; c < classes.length; c++) {
-            if (driver.axclass == classes[c].name) {
-                exists = true;
-                break;
-            }
-        }
-        if (!exists) {
-            if (driver.best > 0 && driver.bestpax > 0) {
-                var index = Math.floor(driver.bestpax / driver.best * 1000) / 1000;
-                index = index > 1 ? 1 : index;
-                classes.push({ name: driver.axclass, index: index.toString() });
-            }
-        }
-    }
-    classes.sort(function (a, b) {
-        return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-    });
-    //console.log(classes);
-    
-    var d = { data: { accessKey: accessKey, runs: data.runs, drivers: data.drivers, eventDate: '3/6/2013', axclasses: classes, counts:counts } };
-    var ds = JSON.stringify(d);
-    var options = { host: 'www.autocrossresults.com', path: '/api/LR_Import', method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': ds.length } };
-
-    var nreq = http.request(options, function (nres) {
-        nres.setEncoding('utf-8');
-        var rs = '';
-        nres.on('data', function (d) {
-            rs += d;
-        });
-        nres.on('end', function () {
-            //console.log(rs);
-            console.log(((new Date().getTime() - start) / 1000) + ' secs');
-            res.send(rs);
-
-        });
-
-    });
-    nreq.write(ds);
-    nreq.end();
-});
-*/
 var running = false, doAnother = false;
 
 
@@ -266,23 +191,6 @@ var data = {
 
 data = parser.doit(settings.datafile, settings);
 
-/*if (settings.uploadToCloud) {
-    var sendCfg = { drivers: [], runs: [], reload: true, useSuperClassing:settings.useSuperClassing, date:new Date().formatDate('MM/dd/yyyy'), lastpoll: data.poller.lastpoll.formatDate('HH:mm:ss'), runcount: data.runs.length };
-    
-    sendCfg.reload = true;
-    sendCfg.runs = data.runs;
-    sendCfg.drivers = data.drivers;
-    
-    console.log('Uploading first pass to cloud.');
-    //TODO only send when there are changes
-    uploadQueue.push(sendCfg);
-    doQueue();
-    //sendIt(sendCfg);
-}*/
-
-//fs.writeFile('ttod.json', JSON.stringify(data.ttod));
-//fs.writeFile('drivers.json', JSON.stringify(data.drivers));
-//fs.writeFile('runs.json', JSON.stringify(data.runs));
 
 if (settings.isLocal) {
     fs.watch(settings.datafile, function (ev, fn) {
@@ -395,69 +303,3 @@ function doQueue() {
     }
 }
 
-/*function reloadCloud() {
-    console.log('Reload Cloud data');
-    var sendCfg = { drivers: [], runs: [], reload: true, useSuperClassing: settings.useSuperClassing, date: new Date().formatDate('MM/dd/yyyy'), lastpoll: data.poller.lastpoll.formatDate('HH:mm:ss'), runcount: data.runs.length };
-
-    sendCfg.reload = true;
-    sendCfg.runs = data.runs;
-    sendCfg.drivers = data.drivers;
-
-    uploadQueue.push(sendCfg);
-    doQueue();
-}*/
-/*
-function sendIt(dat) {
-    var host = settings.cloudConfig.host
-        , port = settings.cloudConfig.port
-        , start = new Date().getTime()
-        , date = new Date().formatDate('MM/dd/yyyy')
-        ;
-
-    var d = { runs: dat.runs, drivers: dat.drivers, reload:dat.reload, lastpoll: dat.lastpoll, runcount: dat.runcount, useSuperClassing:settings.useSuperClassing, date:date };
-    var ds = JSON.stringify(d);
-    var options = { host: host, port: port, path: '/api/importruns/' + settings.accessKey, method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': ds.length } };
-    //{ drivers: data.changes, lastpoll: data.poller.lastpoll.formatDate('HH:mm:ss'), runcount: runCount, last20: last20 
-    //console.log('send body');
-    //console.log(ds);
-
-    //TODO build in reload request handler from cloud version
-
-    try {
-        var nreq = http.request(options, function (nres) {
-            nres.setEncoding('utf-8');
-            var rs = '';
-            nres.on('data', function (d) {
-                rs += d;
-            });
-            nres.on('end', function () {
-                uploadRunning = false;
-                var result = JSON.parse(rs);
-                if (nres.statusCode == 200 && result.status == 'success') {
-                    
-                    console.log('upload status: ' + nres.statusCode);
-                    uploadQueue.shift();
-                    setTimeout(doQueue, 1);
-                    console.log('Uploaded to cloud in ' + ((new Date().getTime() - start) / 1000) + ' secs');
-                } else {
-                    uploadRunning = false;
-                    console.log('FAILED TO SYNCH WITH THE CLOUD!'.red);
-                }
-                
-            
-            });
-
-        });
-        nreq.on('error', function (er) {
-            uploadRunning = false;
-            console.log(('ERROR synching data with cloud. Message: ' + er.message).red);
-        });
-        nreq.write(ds);
-        nreq.end();
-    }
-    catch (err) {
-        uploadRunning = false;
-        console.log('ERROR uploading to cloud. You should restart the application.'.red);
-        //TODO put requests into queue and have basic queue system to guarantee uploads are done in order
-    }
-}*/
