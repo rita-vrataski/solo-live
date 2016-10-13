@@ -193,16 +193,17 @@ ul.class-select li a
 	/* Added */
 		body {
 			background: blue;
-zoom: 5;
-transform: scale(5);
+			width: 640px;
+zoom: 1.5;
+transform: scale(1.5);
 transform-origin:0 0;
--ms-transform: scale(5);
+-ms-transform: scale(1.5);
 -ms-transform-origin:0 0;
--moz-transform: scale(5);
+-moz-transform: scale(1.5);
 -moz-transform-origin: 0 0;
--o-transform: scale(5);
+-o-transform: scale(1.5);
 -o-transform-origin: 0 0;
--webkit-transform: scale(5);
+-webkit-transform: scale(1.5);
 -webkit-transform-origin: 0 0; 		
 
 		}
