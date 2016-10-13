@@ -228,26 +228,26 @@ ul.class-select li a
 	   
 	   .nb-carsearch .ui-icon
 		{
-			background: url(images/magnify-2w.png) 100% 100% no-repeat;
-			background-size: 24px 24px;
+			background: url(images/magnify-2w.png) 50% 50% no-repeat;
+			background-size: 96px 96px;
 		}
 
 		.nb-runs .ui-icon
 		{
-			background: url(images/stopwatch-2w.png) 100% 100% no-repeat;
-			background-size: 22px 28px;
+			background: url(images/stopwatch-2w.png) 50% 50% no-repeat;
+			background-size: 90px 96px;
 		}
 
 		.nb-ttod .ui-icon
 		{
-			background: url(images/badge-2w.png) 100% 100% no-repeat;
-			background-size: 22px 28px;
+			background: url(images/badge-2w.png) 50% 50% no-repeat;
+			background-size: 90px 96px;
 		}
 		.nb-results .ui-icon
 		{
-			background: url(images/flags-2w.png) 100% 100% no-repeat;
-			background-size: 42px 21px;
-			width:42px !important;
+			background: url(images/flags-2w.png) 50% 50% no-repeat;
+			background-size: 120px 70px;
+			width:122px !important;
 		}
 }
 
