@@ -224,11 +224,3 @@ ul.class-select li a
         font-size:26px;
     }
 }
-
-@media only screen (min-width: 360px) {
-     .ui-page {
-	     width: 360px !important;
-	 
-	 }
-
-}
