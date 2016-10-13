@@ -168,8 +168,15 @@ app.get('/driverdata', function (req, res) {
 app.get('/', function (req, res) {
         
         res.sendFile(__dirname + '/results-incremental.html');
-		//console.log("Width found :  ", req.width);
-		//console.log("Height found :  ", req.height);
+		
+		
+		
+});
+
+
+app.get('/testing', function (req, res) {
+        
+        res.sendFile(__dirname + '/testing.html');
 		
 		
 });
