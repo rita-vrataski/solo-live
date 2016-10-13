@@ -202,12 +202,13 @@ ul.class-select li a
 }
 
 /**** Desktop ****/
-/*@media (min-width: 600px)*/
+/*@media (min-width: 600px) */
 @media screen and (min-width: 600px)
 {
 
 	body {
-		background: red;
+		
+		max-width: 640px;
 	  }
    /* .logo-horiz 
       {
