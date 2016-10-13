@@ -193,7 +193,7 @@ ul.class-select li a
 			background: blue;
 			width: 640px;
 			/*font-size: 120%;*/
-			font-size: 6vw;
+			font-size: 3vw;
 
 		}
 		
@@ -229,7 +229,7 @@ ul.class-select li a
 	   .nb-carsearch .ui-icon
 		{
 			background: url(images/magnify-2w.png) 50% 50% no-repeat;
-			background-size: 6px 96px;
+			background-size: 6px 6px;
 		}
 
 		.nb-runs .ui-icon
