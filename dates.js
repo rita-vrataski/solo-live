@@ -53,7 +53,7 @@ Date.prototype.formatDate = function (format) {
     if (format.indexOf("hh") > -1) {
         if (hours > 12) hours = hours - 12;
         if (hours == 0) hours = 12;
-        format = format.replace("hh", hours.toString().padL(2, "0"));
+        format = format.replace("hh", hours.toString());
     }
     if (format.indexOf("mm") > -1)
         format = format.replace("mm", date.getMinutes().toString().padL(2, "0"));

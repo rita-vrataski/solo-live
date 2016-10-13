@@ -1,4 +1,4 @@
-﻿.big-num 
+﻿@media (min-width: 600px).big-num 
 {
     font-size:40px;
     font-weight:bold;
