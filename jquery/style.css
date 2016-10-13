@@ -193,7 +193,21 @@ ul.class-select li a
 	/* Added */
 		body {
 			background: blue;
-		  }
+/*zoom: 0.7;
+transform: scale(0.7);
+transform-origin:0 0;
+-ms-transform: scale(0.7);
+-ms-transform-origin:0 0;
+-moz-transform: scale(0.7);
+-moz-transform-origin: 0 0;
+-o-transform: scale(0.7);
+-o-transform-origin: 0 0;
+-webkit-transform: scale(0.7);
+-webkit-transform-origin: 0 0; */		
+
+		}
+		
+		
 		
       ul.class-select li {width:150px;height:60px;}
       ul.class-select li a {line-height:60px;font-size:24px;}
