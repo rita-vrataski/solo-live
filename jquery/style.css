@@ -224,6 +224,31 @@ ul.class-select li a
 	  .custom-icons .ui-btn .ui-icon{
           width: 142px!important; height: 130px!important; margin-left: -21px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important;
        }
+	   
+	   
+	   .nb-carsearch .ui-icon
+		{
+			background: url(images/magnify-2w.png) 100% 100% no-repeat;
+			background-size: 24px 24px;
+		}
+
+		.nb-runs .ui-icon
+		{
+			background: url(images/stopwatch-2w.png) 100% 100% no-repeat;
+			background-size: 22px 28px;
+		}
+
+		.nb-ttod .ui-icon
+		{
+			background: url(images/badge-2w.png) 100% 100% no-repeat;
+			background-size: 22px 28px;
+		}
+		.nb-results .ui-icon
+		{
+			background: url(images/flags-2w.png) 100% 100% no-repeat;
+			background-size: 42px 21px;
+			width:42px !important;
+		}
 }
 
 /**** Desktop ****/
