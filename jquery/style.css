@@ -206,6 +206,15 @@ ul.class-select li a
       ul.class-select li {width:250px;height:160px;}
       ul.class-select li a {line-height:160px;font-size:240px;}
       
+	  
+	  .rankcontainer span.rank
+		{
+			font-size: 3em;
+		}
+		.driver-ranks
+		{
+			font-size:126px;
+		}
       
 }
 
