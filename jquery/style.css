@@ -229,7 +229,7 @@ ul.class-select li a
 	   .nb-carsearch .ui-icon
 		{
 			background: url(images/magnify-2w.png) 50% 50% no-repeat;
-			background-size: 96px 96px;
+			background-size: 6px 96px;
 		}
 
 		.nb-runs .ui-icon
