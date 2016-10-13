@@ -1,5 +1,7 @@
 ﻿@media (min-width: 600px).big-num 
 {
+      
+	  
     font-size:40px;
     font-weight:bold;
     text-align:center;    
@@ -61,8 +63,7 @@ ul.class-select li a
 
 
 .custom-icons .ui-btn .ui-btn-inner { padding-top: 40px !important; }
-.custom-icons .ui-btn .ui-icon
-{
+.custom-icons .ui-btn .ui-icon{
 width: 42px!important; height: 30px!important; margin-left: -21px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important;
 }
 
@@ -90,29 +91,6 @@ width: 42px!important; height: 30px!important; margin-left: -21px !important; bo
     width:42px !important;
 }
 .ui-dialog .ui-dialog-contain { margin-top: 16px; }
-
-@media (min-width: 640px)
-{
-   /* .logo-horiz 
-      {
-        background:transparent url(images/axtime-logo-horizontal.png) 50% 50% no-repeat;
-        width: 600px;
-        height:117px;
-        margin: 0 auto;
-      }
-     */ 
-      .custom-icons .ui-btn .ui-icon {background-size:auto;width:84px!important;height:60px!important;margin-left:-42px!important;}
-      .custom-icons .ui-btn .ui-btn-inner { padding-top: 70px !important; }
-}
-
-
-@media (min-width: 767px)
-{
-      ul.class-select li {width:150px;height:60px;}
-      ul.class-select li a {line-height:60px;font-size:24px;}
-      
-      
-}
 
 span.rank {
     font-size:60px;
@@ -194,8 +172,38 @@ ul.class-select li a
     font-weight: bold;
 }
 
+@media (min-width: 640px)
+{
+   /* .logo-horiz 
+      {
+        background:transparent url(images/axtime-logo-horizontal.png) 50% 50% no-repeat;
+        width: 600px;
+        height:117px;
+        margin: 0 auto;
+      }
+     */ 
+      .custom-icons .ui-btn .ui-icon {background-size:auto;width:84px!important;height:60px!important;margin-left:-42px!important;}
+      .custom-icons .ui-btn .ui-btn-inner { padding-top: 70px !important; }
+}
+
+
+@media (min-width: 767px)
+{
+
+	/* Added */
+		body {
+			background: blue;
+		  }
+		
+      ul.class-select li {width:150px;height:60px;}
+      ul.class-select li a {line-height:60px;font-size:24px;}
+      
+      
+}
+
 /**** Desktop ****/
-@media (min-width: 600px)
+/*@media (min-width: 600px)*/
+@media screen and (min-width: 600px)
 {
 
 	body {
