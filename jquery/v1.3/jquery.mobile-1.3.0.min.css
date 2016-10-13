@@ -510,10 +510,7 @@ margin:0;
 .ui-mobile [data-role=page],.ui-mobile [data-role=dialog],.ui-page {
 top:0;
 left:0;
-/*  Changed this
 width:100%;
-*/
-width:50%;
 min-height:100%;
 position:absolute;
 display:none;
