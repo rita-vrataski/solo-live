@@ -230,7 +230,8 @@ ul.class-select li a
 		{
 			background: url(images/magnify-2w.png) 0% 50% no-repeat;
 			background-size: 6px 6px;
-			background-position: center;
+			background-position: left;
+			
 		}
 
 		.nb-runs .ui-icon
