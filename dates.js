@@ -48,8 +48,8 @@ Date.prototype.formatDate = function (format) {
         else
             format = format.replace("t", "am")
     }
-    if (format.indexOf("HH") > -1)
-        format = format.replace("HH", hours.toString().padL(2, "0"));
+    //if (format.indexOf("HH") > -1)
+    //    format = format.replace("HH", hours.toString().padL(2, "0"));
     if (format.indexOf("hh") > -1) {
         if (hours > 12) hours - 12;
         if (hours == 0) hours = 12;
