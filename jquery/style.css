@@ -1,7 +1,5 @@
 ﻿@media (min-width: 600px).big-num 
 {
-      
-	  
     font-size:40px;
     font-weight:bold;
     text-align:center;    
@@ -215,6 +213,11 @@ ul.class-select li a
 		{
 			font-size:126px;
 		}
+		
+		
+		
+      .custom-icons .ui-btn .ui-icon {background-size:auto;width:184px!important;height:160px!important;margin-left:-42px!important;}
+      .custom-icons .ui-btn .ui-btn-inner { padding-top: 170px !important; }
       
 }
 
