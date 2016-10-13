@@ -200,9 +200,11 @@ ul.class-select li a
 		}
 		
 		
-		
-      ul.class-select li {width:150px;height:60px;}
-      ul.class-select li a {line-height:60px;font-size:24px;}
+	  span.rank {
+          font-size:160px;
+      }
+      ul.class-select li {width:250px;height:160px;}
+      ul.class-select li a {line-height:160px;font-size:240px;}
       
       
 }
