@@ -215,10 +215,15 @@ ul.class-select li a
 		}
 		
 		
-		
+		/*
       .custom-icons .ui-btn .ui-icon {background-size:auto;width:184px!important;height:160px!important;margin-left:-42px!important;}
       .custom-icons .ui-btn .ui-btn-inner { padding-top: 170px !important; }
-      
+      */
+	  
+	  .custom-icons .ui-btn .ui-btn-inner { padding-top: 140px !important; }
+	  .custom-icons .ui-btn .ui-icon{
+          width: 142px!important; height: 130px!important; margin-left: -21px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important;
+       }
 }
 
 /**** Desktop ****/
