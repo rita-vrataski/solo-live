@@ -194,8 +194,13 @@ ul.class-select li a
     font-weight: bold;
 }
 
+/**** Desktop ****/
 @media (min-width: 600px)
 {
+
+	body {
+		background: red;
+	  }
    /* .logo-horiz 
       {
         background:transparent url(images/axtime-logo-horizontal.png) 50% 50% no-repeat;
