@@ -167,21 +167,12 @@ app.get('/driverdata', function (req, res) {
 
 app.get('/', function (req, res) {
         
-        res.sendFile(__dirname + '/results-incremental.html');
+		res.sendFile(__dirname + '/testing.html');
+        //res.sendFile(__dirname + '/results-incremental.html');
 		
 		
 		
 });
-
-
-app.get('/testing', function (req, res) {
-        
-        res.sendFile(__dirname + '/testing.html');
-		
-		
-});
-
-
 
 
 
