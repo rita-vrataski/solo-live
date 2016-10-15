@@ -1,4 +1,4 @@
-﻿@media (min-width: 600px).big-num 
+﻿.big-num 
 {
     font-size:40px;
     font-weight:bold;
@@ -46,9 +46,7 @@ ul.class-select li a
     overflow:hidden;
 }
 .logo-horiz {text-align:center;}
-/*.logo-horiz img {width:100%;height:auto;max-width:600px;}*/
-.logo-horiz img {width:100%;height:auto;max-width:360px;}
-/*.logo-horiz img {width:100%;height:auto;max-width:1440px;}*/
+.logo-horiz img {width:100%;height:auto;max-width:600px;}
 /*
 .logo-horiz
 {
@@ -61,7 +59,8 @@ ul.class-select li a
 
 
 .custom-icons .ui-btn .ui-btn-inner { padding-top: 40px !important; }
-.custom-icons .ui-btn .ui-icon{
+.custom-icons .ui-btn .ui-icon
+{
 width: 42px!important; height: 30px!important; margin-left: -21px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important;
 }
 
@@ -89,6 +88,29 @@ width: 42px!important; height: 30px!important; margin-left: -21px !important; bo
     width:42px !important;
 }
 .ui-dialog .ui-dialog-contain { margin-top: 16px; }
+
+@media (min-width: 640px)
+{
+   /* .logo-horiz 
+      {
+        background:transparent url(images/axtime-logo-horizontal.png) 50% 50% no-repeat;
+        width: 600px;
+        height:117px;
+        margin: 0 auto;
+      }
+     */ 
+      .custom-icons .ui-btn .ui-icon {background-size:auto;width:84px!important;height:60px!important;margin-left:-42px!important;}
+      .custom-icons .ui-btn .ui-btn-inner { padding-top: 70px !important; }
+}
+
+
+@media (min-width: 767px) 
+{
+      ul.class-select li {width:150px;height:60px;}
+      ul.class-select li a {line-height:60px;font-size:24px;}
+      
+      
+}
 
 span.rank {
     font-size:60px;
@@ -169,93 +191,7 @@ ul.class-select li a
     font-size: 50px;
     font-weight: bold;
 }
-
-@media (min-width: 640px)
-{
-   /* .logo-horiz 
-      {
-        background:transparent url(images/axtime-logo-horizontal.png) 50% 50% no-repeat;
-        width: 600px;
-        height:117px;
-        margin: 0 auto;
-      }
-     */ 
-      .custom-icons .ui-btn .ui-icon {background-size:auto;width:84px!important;height:60px!important;margin-left:-42px!important;}
-      .custom-icons .ui-btn .ui-btn-inner { padding-top: 70px !important; }
-}
-
-
-@media (min-width: 767px)
-{
-
-	/* Added */
-		body {
-			background: blue;
-			width: 640px;
-			/*font-size: 120%;*/
-			font-size: 3vw;
-
-		}
-		
-		
-	  span.rank {
-          font-size:160px;
-      }
-      ul.class-select li {width:250px;height:160px;}
-      ul.class-select li a {line-height:160px;font-size:240px;}
-      
-	  
-	  .rankcontainer span.rank
-		{
-			font-size: 3em;
-		}
-		.driver-ranks
-		{
-			font-size:126px;
-		}
-		
-		
-		/*
-      .custom-icons .ui-btn .ui-icon {background-size:auto;width:184px!important;height:160px!important;margin-left:-42px!important;}
-      .custom-icons .ui-btn .ui-btn-inner { padding-top: 170px !important; }
-      */
-	  
-	  .custom-icons .ui-btn .ui-btn-inner { padding-top: 140px !important; }
-	  .custom-icons .ui-btn .ui-icon{
-          width: 142px!important; height: 130px!important; margin-left: -1px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important;
-       }
-	   
-	   
-	   .nb-carsearch .ui-icon
-		{
-			background: url(images/magnify-2w.png) 0% 0% no-repeat;
-			background-size: 6px 6px;
-			background-position: left;
-			
-		}
-
-		.nb-runs .ui-icon
-		{
-			background: url(images/stopwatch-2w.png) 50% 50% no-repeat;
-			background-size: 90px 96px;
-		}
-
-		.nb-ttod .ui-icon
-		{
-			background: url(images/badge-2w.png) 50% 50% no-repeat;
-			background-size: 90px 96px;
-		}
-		.nb-results .ui-icon
-		{
-			background: url(images/flags-2w.png) 50% 50% no-repeat;
-			background-size: 120px 70px;
-			width:122px !important;
-		}
-}
-
-/**** Desktop ****/
-/*@media (min-width: 600px) */
-@media screen and (min-width: 600px)
+@media (min-width: 600px)
 {
    /* .logo-horiz 
       {
@@ -269,7 +205,6 @@ ul.class-select li a
       ul.class-select li a {line-height:60px;font-size:24px;}
       
 }
-
 @media (max-width:599px)
 {
     .rankcontainer
