@@ -165,6 +165,15 @@ app.get('/driverdata', function (req, res) {
     res.send('did it. ' + (new Date()));
 });*/
 
+app.get('/redirect', function (req, res) {
+        
+		//res.sendFile(__dirname + '/iframe.html');
+        res.sendFile(__dirname + '/results-incremental.html');
+		
+		
+		
+});
+
 app.get('/', function (req, res) {
         
 		res.sendFile(__dirname + '/iframe.html');
