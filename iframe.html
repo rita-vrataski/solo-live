@@ -3,18 +3,22 @@
 <script>
 <!--<link rel="stylesheet" href="testStyle.css" /> -->
 
-
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.map"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+
 </header>
 
-<body position="fixed">
+<body>
+<!--<body position="fixed" max-width="360px">-->
 
-
-<div id="my-iframe" style="-webkit-overflow-scrolling: touch;  overflow: auto;">
- <!-- place these styles in-line in a div wrapper around the iframe; 
- they are not stable in CSS -->
+<center>
+<div class="container">
+<!-- <div id="my-iframe" style="-webkit-overflow-scrolling: touch;  overflow: auto; width: 360px; float: center"  > -->
  
- <iframe src="http://solo-live.herokuapp.com/redirect" height=100% width="360" seamless="seamless" margin="0" padding="0" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" style="border:0">
+ 
+ <iframe src="http://solo-live.herokuapp.com/redirect" height=100% width=100% seamless="seamless" margin="0" padding="0" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" style="border:0">
      <p style="font-size: 110%;"><em><strong>IFRAME: </strong>
  There is iframe content being displayed
   here but your browser version does not support iframes. </em> 
@@ -22,6 +26,6 @@
   and try again.</p>
  </iframe>  
  </div>
-
+</center>
 </body>
 </html>
