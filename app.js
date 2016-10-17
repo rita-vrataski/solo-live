@@ -185,7 +185,7 @@ app.get('/resolution', function (req, res) {
 
 app.get('/', function (req, res) {
         
-		//res.sendFile(__dirname + '/iframe.html');
+		res.sendFile(__dirname + '/iframe.html');
         res.sendFile(__dirname + '/results-incremental.html');
 		
 		
