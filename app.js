@@ -174,6 +174,15 @@ app.get('/redirect', function (req, res) {
 		
 });
 
+app.get('/resolution', function (req, res) {
+        
+		//res.sendFile(__dirname + '/iframe.html');
+        res.sendFile(__dirname + '/testing.html');
+		
+		
+		
+});
+
 app.get('/', function (req, res) {
         
 		res.sendFile(__dirname + '/iframe.html');
