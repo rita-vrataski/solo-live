@@ -46,19 +46,6 @@ body {
     width: 67%;
 }
 
-#url-wrapper.ios{
-    overflow-y: auto;
-    -webkit-overflow-scrolling:touch !important;
-    height: 100%;
-}
-
-#url-wrapper.ios iframe{
-    
-    min-width: 30%;
-    width: 100px;
-    *width: 30%;
-}
-
 
 </style>
 
@@ -75,27 +62,7 @@ body {
 
 <body  style="border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0; left: 0; right: 0; -webkit-backface-visibility: visible; backface-visibility: hidden; transform: translateZ(0); transform: scale(1.5); -webkit-transform: scale(1.5); -moz-transform: scale(1.5); -ms-transform: scale(1.5); -o-transform: scale(1.5); margin: 0% 0%; transform-origin: 0% 0%; -moz-transform-origin: 0% 0%; -o-transform-origin: 0% 0%; -webkit-transform-origin: 0% 0%;"> 
 
-<script type="text/javascript">
-function create_iframe(url){
 
-    var wrapper = jQuery('#url-wrapper');
-
-    if(navigator.userAgent.match(/(iPod|iPhone|iPad)/)){
-        wrapper.addClass('ios');
-        var scrolling = 'no';
-    }else{
-        var scrolling = 'yes';
-    }
-
-    jQuery('<iframe>', {
-        src: url,
-        id:  'url',
-        frameborder: 0,
-        scrolling: scrolling
-    }).appendTo(wrapper);
-
-}
-</script>
 
 <!--<div style="transform: scale(1.25); -webkit-transform: scale(1.25); -moz-transform: scale(1.25); -ms-transform: scale(1.25); -o-transform: scale(1.25); margin: 0% 0%; transform-origin: 0% 0%; -moz-transform-origin: 0% 0%; -o-transform-origin: 0% 0%; -webkit-transform-origin: 0% 0%;"> -->
 <!--<div class="container" style="transform: scale(1.5); -webkit-transform: scale(1.5); -moz-transform: scale(1.5); -ms-transform: scale(1.5); -o-transform: scale(1.5); margin: 0% 0%; transform-origin: 0% 0%; -moz-transform-origin: 0% 0%; -o-transform-origin: 0% 0%; -webkit-transform-origin: 0% 0%;">-->
