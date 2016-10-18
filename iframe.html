@@ -5,7 +5,7 @@
 <html>
 <head>
 <style>
-html, body {
+html {
      background: transparent !important;
      color: transparent !important;
      background-color: transparent !important;
@@ -16,7 +16,22 @@ html, body {
      -webkit-backface-visibility: visible;
 	 -webkit-filter: blur(0);
     height: 100%;
+	overflow-y: hidden; 
 	
+}
+
+body {
+     background: transparent !important;
+     color: transparent !important;
+     background-color: transparent !important;
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     -webkit-backface-visibility: visible;
+	 -webkit-filter: blur(0);
+    height: 100%;
+
 	
 }
 
@@ -39,9 +54,9 @@ html, body {
 
 #url-wrapper.ios iframe{
     
-    min-width: 67%;
+    min-width: 60%;
     width: 100px;
-    *width: 67%;
+    *width: 60%;
 }
 
 
