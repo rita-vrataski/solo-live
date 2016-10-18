@@ -199,7 +199,7 @@ app.get('/', function (req, res) {
         //res.sendFile(__dirname + '/results-incremental.html');
 		
 		http.get('*',function(req,res){  
-        res.redirect('http://solo-live.herokuapp.com')
+        res.redirect('http://solo-live.herokuapp.com/redirect')
         }) 
 		
 });
