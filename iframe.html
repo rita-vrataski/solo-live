@@ -12,11 +12,14 @@ html, body {
      right: 0;
      -webkit-backface-visibility: visible;
     height: 100%;
+	overflow-y: hidden;
+	
 }
 
 #url-wrapper{
     margin-top: 0px;
     height: 100%;
+	
 }
 
 #url-wrapper iframe{
@@ -31,7 +34,9 @@ html, body {
 }
 
 #url-wrapper.ios iframe{
-    height: 67%;
+    height: 100px;
+	*height: 67%;
+	min-height: 67%;
     min-width: 67%;
     width: 100px;
     *width: 67%;
