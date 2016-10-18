@@ -11,8 +11,36 @@ html, body {
      left: 0;
      right: 0;
      -webkit-backface-visibility: visible;
+    height: 100%;
 }
+
+#url-wrapper{
+    margin-top: 51px;
+    height: 100%;
+}
+
+#url-wrapper iframe{
+    height: 100%;
+    width: 100%;
+}
+
+#url-wrapper.ios{
+    overflow-y: auto;
+    -webkit-overflow-scrolling:touch !important;
+    height: 100%;
+}
+
+#url-wrapper.ios iframe{
+    height: 100%;
+    min-width: 100%;
+    width: 100px;
+    *width: 100%;
+}
+
+
 </style>
+
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
@@ -25,9 +53,31 @@ html, body {
 
 <body  style="border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0; left: 0; right: 0; -webkit-backface-visibility: visible; backface-visibility: hidden; transform: translateZ(0); transform: scale(1.5); -webkit-transform: scale(1.5); -moz-transform: scale(1.5); -ms-transform: scale(1.5); -o-transform: scale(1.5); margin: 0% 0%; transform-origin: 0% 0%; -moz-transform-origin: 0% 0%; -o-transform-origin: 0% 0%; -webkit-transform-origin: 0% 0%;"> 
 
+<script type="text/javascript">
+function create_iframe(url){
+
+    var wrapper = jQuery('#url-wrapper');
+
+    if(navigator.userAgent.match(/(iPod|iPhone|iPad)/)){
+        wrapper.addClass('ios');
+        var scrolling = 'no';
+    }else{
+        var scrolling = 'yes';
+    }
+
+    jQuery('<iframe>', {
+        src: url,
+        id:  'url',
+        frameborder: 0,
+        scrolling: scrolling
+    }).appendTo(wrapper);
+
+}
+</script>
+
 <!--<div style="transform: scale(1.25); -webkit-transform: scale(1.25); -moz-transform: scale(1.25); -ms-transform: scale(1.25); -o-transform: scale(1.25); margin: 0% 0%; transform-origin: 0% 0%; -moz-transform-origin: 0% 0%; -o-transform-origin: 0% 0%; -webkit-transform-origin: 0% 0%;"> -->
 <!--<div class="container" style="transform: scale(1.5); -webkit-transform: scale(1.5); -moz-transform: scale(1.5); -ms-transform: scale(1.5); -o-transform: scale(1.5); margin: 0% 0%; transform-origin: 0% 0%; -moz-transform-origin: 0% 0%; -o-transform-origin: 0% 0%; -webkit-transform-origin: 0% 0%;">-->
-<div>
+<div id ="url-wrapper">
  
  <iframe src="http://solo-live.herokuapp.com/redirect" style="width: 1px; min-width: 67% ; *width: 67%; height: 1px; min-height: 67% ; *height: 67%; " seamless="seamless" margin="0" padding="0" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" style="border:0">
      <p style="font-size: 110%;"><em><strong>IFRAME: </strong>
