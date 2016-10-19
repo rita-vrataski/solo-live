@@ -182,7 +182,7 @@ function refreshDriver() {
                     var theme = r.isDnf ? ' data-theme="a" data-icon="delete"' : (r.getRerun ? ' data-theme="e" data-icon="alert"' : ' data-icon="false"');
 					
 					if (r.cones > 0) {
-						r.cones = '<span class="ui-li-count">+' + r.cones + '</span>'
+						r.cones = '<span class="ui-li-count">+' + r.cones + ' cones</span>'
 					
 					} else {
 						r.cones =''
@@ -197,7 +197,8 @@ function refreshDriver() {
                     if (driver.best == r.time) {
                         theme = ' data-theme="b" data-icon="check"';
                     }
-                    html.push('<li' + theme + '><a href="#">' + r.time + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');
+                    html.push('<li' + theme + '><a href="#">' + r.rawtime + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');
+					//html.push('<li' + theme + '><a href="#">' + r.time + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');
                     //html.push('<li' + theme + '><a href="#">' + r.time + ' (' + r.timepaxed  + ')<span class="ui-li-count">' + r.cones + '</span></a></li>');
                 }
                 $('#drivertimes').empty().html('<li data-role="list-divider">Times (PAX)</li>' + html.join('')).listview('refresh');
