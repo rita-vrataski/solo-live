@@ -194,10 +194,14 @@ function refreshDriver() {
 					
                     var theme = r.isDnf ? ' data-theme="a" data-icon="delete"' : (r.getRerun ? ' data-theme="e" data-icon="alert"' : ' data-icon="false"');
 					
-					if (r.cones > 0) {
+					if (r.cones > 1) {
 						r.cones = '<span class="ui-li-count">+' + r.cones + ' cones</span>'
 					
-					} else {
+					} else if (r.cones == 1) {
+						r.cones = '<span class="ui-li-count">+' + r.cones + ' cone</span>'
+					
+					} 
+					else {
 						r.cones =''
 					}
 					
@@ -210,11 +214,11 @@ function refreshDriver() {
                     if (driver.best == r.time) {
                         theme = ' data-theme="b" data-icon="check"';
                     }
-                    html.push('<li' + theme + '><a href="#">' + r.rawtime.toFixed(3) + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');
+                    html.push('<li' + theme + '><a href="#"><H1>' + r.rawtime.toFixed(3) + ' (' + r.timepaxed  + ')</H1>' + r.cones + '</a></li>');
 					//html.push('<li' + theme + '><a href="#">' + r.time + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');
                     //html.push('<li' + theme + '><a href="#">' + r.time + ' (' + r.timepaxed  + ')<span class="ui-li-count">' + r.cones + '</span></a></li>');
                 }
-                $('#drivertimes').empty().html('<li data-role="list-divider">Times (PAX)</li>' + html.join('')).listview('refresh');
+                $('#drivertimes').empty().html('<li data-role="list-divider"><H1>Times (PAX)</H1></li>' + html.join('')).listview('refresh');
             }
         });
     }
