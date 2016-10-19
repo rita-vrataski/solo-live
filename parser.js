@@ -270,6 +270,7 @@ function genstats(pr) {
             if (ttodp.value > run.timepaxed && run.timepaxed > 0) {
                 ttodp = new ttoditem(run.driver, run.car, run.axclass, run.timepaxed, 'PAX Time');
             }
+			
             if (run.axclass.indexOf('L') == -1) {
                 if (ttodm.value > run.time) {
                     ttodm = new ttoditem(run.driver, run.car, run.axclass, run.time, "Men's Time");
