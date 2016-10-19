@@ -128,7 +128,7 @@ function parse(line) {
                                 todFound = true;
                             }
 							//else if (z == 'paxed') { r.timepaxed = parseFloat(v); }
-                            else if (z == 'paxed') { r.timepaxed = parseFloat(v); }
+                            else if (z == 'paxed') { r.timepaxed = parseFloat(v).toFixed(3); }
                         }
                     }
                 }
@@ -136,7 +136,7 @@ function parse(line) {
             //determine super classes
             r.superClass = getSuperClass(r.axclass);
 
-            r.time = (r.cones * secondsPerCone) + r.rawtime;
+            r.time = ((r.cones * secondsPerCone) + r.rawtime).toFixed(3);
             if (r.timepaxed == NaN || r.timepaxed == null) { r.timepaxed = r.time; }
             if (!todFound && !useTod) { return null; }
             if (r.driver.length == 0) { return null; }
