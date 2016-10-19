@@ -32,16 +32,7 @@
 
     <div data-role="page" id="page-results" > 
         <div data-role="header" data-position="fixed">
-            <a href="javascript:history.back()" data-ajax="true" data-icon="arrow-l" data-reverse="true">Back</a>
-			<!--<a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a> -->
-			<!--<a href="/index" data-ajax="false" data-icon="arrow-l" data-reverse="true">Home</a>-->
-            
-			<h1>Live Results</h1>
-            
-			
-			<a data-role="button" id="btn-showdetails" data-icon="check" data-inline="true" class="ui-btn-active">Details</a>
-			
-			<div data-role="navbar" class="custom-icons">
+		    <div data-role="navbar" class="custom-icons">
                 <ul>
                     <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
                     <li><a href="#page-ttod" class="nb-ttod" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
@@ -58,6 +49,17 @@
                     <!--<li><a href="/runs" data-ajax="false" id="btn-runs" href="#" data-theme="e">Runs</a></li>-->
                 </ul>
             </div>
+			
+            <a href="javascript:history.back()" data-ajax="true" data-icon="arrow-l" data-reverse="true">Back</a>
+			<!--<a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a> -->
+			<!--<a href="/index" data-ajax="false" data-icon="arrow-l" data-reverse="true">Home</a>-->
+            
+			<h1>Live Results</h1>
+            
+			
+			<a data-role="button" id="btn-showdetails" data-icon="check" data-inline="true" class="ui-btn-active">Details</a>
+			
+			
         </div>
         <div data-role="content" style="padding-top:0px;">
            <!--<div style="text-align:center;"><img src="/images/logo-100.png" /></div>-->
@@ -153,10 +155,6 @@
 
     <div data-role="page" id="page-driver">
         <div data-role="header">
-            <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a>
-			<!--<a href="/index" data-role="button" data-ajax="false" data-icon="home" data-reverse="true">Home</a>-->
-            <h1 id="drivername">Live Results</h1>
-            <!--<a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a>-->
 			<div data-role="navbar" class="custom-icons">
                 <ul>
                     <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
@@ -166,6 +164,12 @@
                 </ul>
 
             </div>
+			
+            <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a>
+			<!--<a href="/index" data-role="button" data-ajax="false" data-icon="home" data-reverse="true">Home</a>-->
+            <h1 id="drivername">Live Results</h1>
+            <!--<a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a>-->
+			
         </div>
         <div data-role="content">
            <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" /></div>
@@ -207,9 +211,6 @@
     </div>
     <div data-role="page" id="page-runs">
         <div data-role="header">
-            <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a>
-			<!--<a href="/results" data-role="button" data-ajax="false" data-icon="home" data-reverse="true">Home</a>-->
-            <h1>Runs</h1>
 			<div data-role="navbar" class="custom-icons">
                 <ul>
                     <li><a href="#dlg-carsearch" class="nb-carsearch"  data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
@@ -219,6 +220,11 @@
                 </ul>
 
             </div>
+			
+            <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a>
+			<!--<a href="/results" data-role="button" data-ajax="false" data-icon="home" data-reverse="true">Home</a>-->
+            <h1>Runs</h1>
+			
         </div>
         <div data-role="content">
             <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" alt="AXti.me Logo" /></div>
@@ -247,12 +253,7 @@
 
     <div data-role="page" id="page-ttod">
         <div data-role="header">
-		    <!-- <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a> -->
-            
-            <h1>Top Times Of the Day</h1>
-			<!-- <a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a> -->
-			<!-- <a href="#page-ttod" data-role="button" data-icon="arrow-l" data-reverse="true">Refresh</a> -->
-            <div data-role="navbar" class="custom-icons">
+			<div data-role="navbar" class="custom-icons">
                 <ul>
                     <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
                     <li><a href="#page-ttod" class="nb-ttod ui-btn-active ui-state-persist" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
@@ -260,7 +261,14 @@
                     <li><a href="/redirect" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
                 </ul>
 
-            </div>			
+            </div>
+			
+		    <!-- <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a> -->
+            
+            <h1>Top Times Of the Day</h1>
+			<!-- <a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a> -->
+			<!-- <a href="#page-ttod" data-role="button" data-icon="arrow-l" data-reverse="true">Refresh</a> -->
+            			
         </div>
         <div data-role="content">
             <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" alt="AXti.me Logo" /></div>
