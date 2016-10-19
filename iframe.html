@@ -1,25 +1,65 @@
-<html height="100%">
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+		<link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
+		<style>
+			body {
+				font-family: sans-serif;
+				margin:50px;
+				background-color: #f0f0f0;
+			}
 
-<head>
+			/* In IFRAME document */
 
-</head>
+			body#iframe {
+				margin:0;
+				background-color: white;
+			}
 
-<body height="100%">
+			#iframe-container, #iframe-container iframe {
+				width: 500px;
+				height:500px;
+			}
 
-<div style="overflow-y: hidden;
-    -webkit-overflow-scrolling:touch !important;
-    height: 100%;">
-	
-	
-<iframe src="http://solo-live.herokuapp.com/redirect" style="height: 100%;
-    min-width: 100%;
-    width: 100px;
-    *width: 100%;">
+			#overlay {
+				display: none;
+				position: fixed;
+				top: 0;
+				right:0;
+				bottom:0;
+				left: 0;
+				background-color: rgba(0,0,0,.8);
+				z-index: 10;
+			}
 
+			#overlay > div {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+				width: 30px;
+				height: 30px;
+				background-color: white;
+			}
 
-</iframe>
-</div>
-</body>
+			#wrap {
+				position: fixed;
+				top: 0;
+				right:0;
+				bottom:0;
+				left: 0;
+				padding: 50px;
+				overflow-y: scroll;
+				-webkit-overflow-scrolling: touch;
+				box-sizing: border-box;
+			}
 
-
+		</style>
+	</head>
+	<body>
+		<div id="iframe-container">
+			<iframe src="http://solo-live.herokuapp.com/redirect" frameborder="0"></iframe>
+		</div>
+	</body>
 </html>
