@@ -109,8 +109,8 @@ function parse(line) {
                             if (z == 'run') { r.n = parseInt(v); }
                             else if (z == 'class') { r.axclass = v; }
                             else if (z == 'number') { r.car.number = v; }
-							//else if (z == 'tm') { r.rawtime = parseFloat(v).toFixed(2); }
-                            else if (z == 'tm') { r.rawtime = parseFloat(v).toFixed(2); }
+							//else if (z == 'tm') { r.rawtime = parseFloat(v); }
+                            else if (z == 'tm') { r.rawtime = parseFloat(v).toFixed(3); }
                             else if (z == 'penalty') {
                                 if (v == 'DNF') { r.isDnf = true; }
 								else if (v == 'DNS') { r.isDnf = true; }
@@ -127,8 +127,8 @@ function parse(line) {
                                 r.tod = parseInt(v);
                                 todFound = true;
                             }
-							//else if (z == 'paxed') { r.timepaxed = parseFloat(v).toFixed(2); }
-                            else if (z == 'paxed') { r.timepaxed = parseFloat(v).toFixed(2); }
+							//else if (z == 'paxed') { r.timepaxed = parseFloat(v); }
+                            else if (z == 'paxed') { r.timepaxed = parseFloat(v).toFixed(3); }
                         }
                     }
                 }
