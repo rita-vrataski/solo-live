@@ -414,7 +414,7 @@
                 + '<span class="time rawtime">' + p.best + (p.ranko > 1 ? ('<span style="color:red;"> +' + p.rawDiffo + '</span><span style="color:red;font-size:.8em;"> +' + p.rawDiffp + '</span>') : '') + '</span>'
                 + '<span class="time paxtime">' + p.bestpax + (p.rankp > 1 ? ('<span style="color:red;"> +' + p.paxDiffo + '</span><span style="color:red;font-size:.8em;"> +' + p.paxDiffp + '</span>') : '') + '</span>'
                 + ( (p.superClass == 'PAX' ||  p.superClass == 'RK') ? ('<span class="time classtime">' + p.bestpax + (p.rankp > 1 ? ('<span style="color:red;"> +' + p.paxDiffo + '</span><span style="color:red;font-size:.8em;"> +' + p.paxDiffp + '</span>') : '') + '</span>'):('<span class="time classtime">' + (config.useSuperClassing ? p.best : p.best) + (p.rankc > 1 ? ('<span style="color:red;"> +' + p.classDiffo + '</span><span style="color:red;font-size:.8em;"> +' + p.classDiffp + '</span>') : '') + '</span>'))
-                + '</p><p class="ui-li-desc details">DNFs: ' + p.dnfCount + ', Re-runs:' + p.reruns + ', Cones:' + p.cones + '</br>' + p.axclass+ '</p><span class="ui-li-count">' + p.runCount + '</span>'
+                + '</p><p class="ui-li-desc details">DNFs: ' + p.dnfCount + ', Re-runs: ' + p.reruns + ', Cones: ' + p.cones + '</br>' + p.axclass+ '</p><span class="ui-li-count">' + p.runCount + '</span>'
                 + '</a></li>';
         }
 
