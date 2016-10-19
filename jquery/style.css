@@ -1,4 +1,8 @@
-﻿.big-num 
+﻿.li {
+      font-size:40px;
+}
+
+.big-num 
 {
     font-size:40px;
     font-weight:bold;
