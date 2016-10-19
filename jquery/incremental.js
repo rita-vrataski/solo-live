@@ -72,21 +72,34 @@ function toggleResults() {
             $('#classlist').show();
             $('#btn-selectclass').hide();
             $('#resulttimes').hide();
+			$('#subcategory').text('Live Results - By Class');
         }
         else {
             sortClass(selectedClass);
-            $('#btn-selectclass').show();
+            $('#classlist').hide();
+			$('#btn-selectclass').show();
+            $('#resulttimes').hide();
+			
+			$('#btn-raw').html('<a href="#" id="btn-raw" data-theme="e" class="btn-results">' + Overall + '</a>');
+			$('#btn-class').html('<a href="#" id="btn-class" data-theme="e" class="ui-btn-active btn-results">' + Class + '</a>');
+			$('#btn-pax').html('<a href="#" id="btn-pax" data-theme="e" class="btn-results">' + PAX + '</a>');
+			$('#subcategory').text('Live Results - ' + selectedClass);
+			//<li><a href="#" id="btn-raw" data-theme="e" class="ui-btn-active btn-results">Overall</a></li>
+            //<li><a id="btn-class" href="#" data-theme="e" class="btn-results">Class</a></li>
+            //<li><a id="btn-pax" href="#" data-theme="e" class="btn-results">PAX</a></li>
         }
         
     } else if (el.attr('id').indexOf('pax') > -1) {
         $('#classlist').hide();
         $('#btn-selectclass').hide();
         $('#resulttimes').show();
+		$('#subcategory').text('Live Results - PAX');
         sortPax();
     } else {
         $('#classlist').hide();
         $('#btn-selectclass').hide();
         $('#resulttimes').show();
+		$('#subcategory').text('Live Results - Overall');
         sortRaw();
     }
     //setTimeout(genTimes, 1);
@@ -221,11 +234,46 @@ function genDriver(driver) {
     $('#drivername').text(driver.name);
     $('#driver-lastupdated').text(lastpoll);
     $('#driver-runcount').text(driver.runCount);
-    $('#driverinfo').html('<strong>' + driver.name + '</strong> ' + driver.axclass + ' ' + driver.car.number  );
+    $('#driverinfo').html('<strong>' + driver.name + '</strong> ' + driver.axclass + ' ' + driver.car.number + '<br>' + driver.car.description   );
+	
+	
+	// Added a button for this
 	
 	$('#driverclass').empty();
-        var cl = driver.axclass
-        var li = $('<li id="cls||' + cl + '"><a class="ui-btn ui-btn-up-c">' + cl + '</a></li>')
+        var cl = driver.axclass;
+		
+		var li = $('<a id="cls||' + cl + '" class="class-select" data-role="button" data-theme="b"><p style="clear:both;">' + "See All " + cl + ' Class Results</p></a>')
+		//var li = $('<li id="cls||' + cl + '"><a class="class-select ui-btn ui-btn-up-c" data-role="button" data-theme="b">' + "See All " + cl + ' Class Results</a></li>')
+        //var li = $('<p style="clear:both;"><li id="cls||' + cl + '"><a class="class-select" data-role="button" data-theme="b">' + "See All " + cl + ' Class Results</a></li></p>')
+		//var li = $('<li id="cls||' + cl + '"><a class="ui-btn ui-btn-up-c">' + cl + '</a></li>')
+		//<p style="clear:both;"><a id="btn-selectclass" data-role="button" data-theme="b">Choose a Different Class</a></p>
+            .bind('click', function () {
+                var clc = $(this).attr('id').split('||')[1];
+                selectedClass = clc;
+				sortClass(clc);
+				activePage = 'results';
+				$.mobile.changePage('#page-results');
+				$('#classlist').hide();
+                $('#btn-selectclass').show();
+                $('#resulttimes').show();
+				toggleResults();
+                $('#classlist').hide();
+                $('#btn-selectclass').show();
+                $('#resulttimes').show();
+				$('#btn-raw').html('<a href="#" id="btn-raw" data-theme="e" class="btn-results">' + Overall + '</a>');
+				$('#btn-class').html('<a href="#" id="btn-class" data-theme="e" class="ui-btn-active btn-results">' + Class + '</a>');
+				$('#btn-pax').html('<a href="#" id="btn-pax" data-theme="e" class="btn-results">' + PAX + '</a>');
+			
+			
+				
+				
+            });
+        $('#driverclass').append(li);
+	
+	/*
+	$('#driverclass').empty();
+        var cl = driver.axclass;
+        var li = $('<a class="btn-selectclass" id="cls||' + cl + '">' + "See All " + cl + ' Class Results</a>')
             .bind('click', function () {
                 var clc = $(this).attr('id').split('||')[1];
                 selectedClass = clc;
@@ -233,9 +281,11 @@ function genDriver(driver) {
                 $('#btn-selectclass').show();
                 $('#resulttimes').show();
                 sortClass(clc);
+				activePage = 'results';
+				$.mobile.changePage('#page-driver');
             });
         $('#driverclass').append(li);
-    
+    */
 	
 	
 	/*

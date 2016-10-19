@@ -37,7 +37,7 @@
 			<!--<a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a> -->
 			<!--<a href="/index" data-ajax="false" data-icon="arrow-l" data-reverse="true">Home</a>-->
             
-			<h1>Live Results</h1>
+			<h1 id="subcategory">Live Results - Overall</h1>
             <a data-role="button" id="btn-showdetails" data-icon="check" data-inline="true" class="ui-btn-active">Details</a>
 			
 		    <div data-role="navbar" class="custom-icons">
@@ -52,7 +52,8 @@
             </div>
 			
             <div data-role="navbar">
-                <ul><li><a href="#" id="btn-raw" data-theme="e" class="ui-btn-active btn-results">Overall</a></li>
+				<!--<ul><li><a href="#" id="btn-raw" data-theme="e" class="ui-btn-active btn-results">Overall</a></li>-->
+				<ul><li><a href="#" id="btn-raw" data-theme="e" class="btn-results">Overall</a></li>
                     <li><a id="btn-class" href="#" data-theme="e" class="btn-results">Class</a></li>
                     <li><a id="btn-pax" href="#" data-theme="e" class="btn-results">PAX</a></li>
                     <!--<li><a href="/runs" data-ajax="false" id="btn-runs" href="#" data-theme="e">Runs</a></li>-->
@@ -125,7 +126,7 @@
 					<li><a href="#dlg-carsearch" class="nb-carsearch ui-btn-active ui-state-persist" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
                     <li><a href="#page-ttod" class="nb-ttod" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
                     <li><a href="#page-runs" class="nb-runs" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
-                    <li><a href="/redirect" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                    <li><a href="#page-results" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
                 </ul>
 
             </div>
@@ -183,7 +184,7 @@
 					<li><a href="#dlg-carsearch" class="nb-carsearch" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
                     <li><a href="#page-ttod" class="nb-ttod" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
 					<li><a href="#page-runs" class="nb-runs" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
-                    <li><a href="/redirect" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                    <li><a href="#page-results" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
                 </ul>
 
             </div>
@@ -195,7 +196,8 @@
 		   
 <!-------------------------------- fix this -->
 		   <!--<p style="clear:both;"><a id="btn-selectclass" data-role="button" data-theme="b">Choose a Different Class</a></p>-->
-		   <p style="clear:both;"><a id="driverclass" data-role="button" data-theme="b">See Class Results</a></p>
+		   <!--<ul id="classlist" class="class-select"><li>Loading...</li></ul>-->
+		   
 		   
            <p style="text-align:left"><span id="driverinfo" /></p>
 		   <p id="P1"  class="ui-li-desc details" style="margin-left:4px">Updated: <strong><span id="driver-lastupdated" class="lastpoll">-</span></strong></p>
@@ -214,6 +216,8 @@
                 <li data-theme="a" data-icon="delete"><a href="#">DNF</a></li>
                 <li data-theme="e" data-icon="alert"><a href="#">Rerun</a></li>
             </ul> -->
+			
+			<p style="clear:both;"><a class="class-select" id="driverclass" data-role="button" data-theme="b">See All Class Results</a></p>
  
        </div>
         
@@ -294,7 +298,7 @@
                     <li><a href="#dlg-carsearch" class="nb-carsearch" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
                     <li><a href="#page-ttod" class="nb-ttod ui-btn-active ui-state-persist" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
                     <li><a href="#page-runs" class="nb-runs" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
-                    <li><a href="/redirect" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                    <li><a href="#page-results" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
                 </ul>
 
             </div>
@@ -373,7 +377,18 @@
             //activePage = 'driver';
 			
 			//lastDriver = data.drivers[i];
-			$("#driverclass").click(toggleResults);
+			//$("#driverclass").click(toggleResults);
+			
+			
+			$('#driverclass').click(function () {
+				//activePage = 'results';
+                //selectedClass = null;
+                //$('#classlist').hide();//.listview('refresh');
+                //$('#btn-selectclass').hide();
+                //$('#resulttimes').show();
+                sortClass(selectedClass);
+                
+            });
 
         });
 		
@@ -414,6 +429,7 @@
                 $('#btn-selectclass').hide();
                 $('#resulttimes').hide();
                 sortClass();
+				
                 
             });
             
@@ -542,9 +558,11 @@
             //console.log('sort class');
             if (selectedClass == null) {
                 $('#classlist').show();
+				$('#subcategory').text('Live Results - By Class');
                 console.log('show chooser');
             }
             else {
+				$('#subcategory').text('Live Results - ' + selectedClass);
                 //console.log('show class results');
                 var items = $('#resulttimes li').sort(function (a, b) {
                     var aa = $(a).data('driver').rankc
@@ -562,8 +580,11 @@
                     }
                 }
                 $('#resulttimes').removeClass('rank-pax rank-overall').addClass('rank-class').append(items);
+				
+				
 
             }
+			
         }
         function resort() {
             if (sort == 'pax') { sortPax(); }
