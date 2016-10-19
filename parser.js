@@ -110,7 +110,7 @@ function parse(line) {
                             else if (z == 'class') { r.axclass = v; }
                             else if (z == 'number') { r.car.number = v; }
 							//else if (z == 'tm') { r.rawtime = parseFloat(v); }
-                            else if (z == 'tm') { r.rawtime = new Number(parseFloat(v)).toFixed(3); }
+                            else if (z == 'tm') { r.rawtime = (new Number(parseFloat(v))).toFixed(3); }
                             else if (z == 'penalty') {
                                 if (v == 'DNF') { r.isDnf = true; }
 								else if (v == 'DNS') { r.isDnf = true; }
@@ -128,7 +128,7 @@ function parse(line) {
                                 todFound = true;
                             }
 							//else if (z == 'paxed') { r.timepaxed = parseFloat(v); }
-                            else if (z == 'paxed') { r.timepaxed = new Number(parseFloat(v)).toFixed(3); }
+                            else if (z == 'paxed') { r.timepaxed = (new Number(parseFloat(v))).toFixed(3); }
                         }
                     }
                 }
