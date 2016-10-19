@@ -93,6 +93,7 @@
                 <ul id="resulttimes" data-role="listview" data-divider-theme="e" class="rank-overall" style="clear:both;"><li>Loading results...</li></ul>
             </div>
         </div> 
+		<!--
         <div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
             <div data-role="navbar" class="custom-icons">
                 <ul>
@@ -104,6 +105,7 @@
 
             </div>
         </div>  
+		-->
     </div>
 
     <div data-role="dialog" id="dlg-carsearch">
@@ -137,7 +139,8 @@
             <h1>Cars</h1>
 		    <ul data-role="listview" id="carsearch-list"><li>Loading drivers...</li></ul>
         </div>
-        <div data-role="footer">
+        
+		<div data-role="footer">
             <div data-role="navbar">
                 <ul>
                     <li><a href="#page-results" data-role="button" data-theme="b">Cancel</a></li>
@@ -154,6 +157,15 @@
 			<!--<a href="/index" data-role="button" data-ajax="false" data-icon="home" data-reverse="true">Home</a>-->
             <h1 id="drivername">Live Results</h1>
             <!--<a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a>-->
+			<div data-role="navbar" class="custom-icons">
+                <ul>
+                    <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
+                    <li><a href="#page-ttod" class="nb-ttod" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
+					<li><a href="#page-runs" class="nb-runs" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
+                    <li><a href="/redirect" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                </ul>
+
+            </div>
         </div>
         <div data-role="content">
            <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" /></div>
@@ -176,7 +188,9 @@
             </ul> -->
  
        </div>
-        <div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
+        
+		<!--
+		<div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
             <div data-role="navbar" class="custom-icons">
                 <ul>
                     <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
@@ -186,13 +200,25 @@
                 </ul>
 
             </div>
-        </div> 
+        </div>
+		-->
+
+		
     </div>
     <div data-role="page" id="page-runs">
         <div data-role="header">
             <a href="javascript:history.back()" data-ajax="false" data-icon="arrow-l" data-reverse="true">Back</a>
 			<!--<a href="/results" data-role="button" data-ajax="false" data-icon="home" data-reverse="true">Home</a>-->
             <h1>Runs</h1>
+			<div data-role="navbar" class="custom-icons">
+                <ul>
+                    <li><a href="#dlg-carsearch" class="nb-carsearch"  data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
+                    <li><a href="#page-ttod" class="nb-ttod"  data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
+                    <li><a href="#page-runs" class="nb-runs ui-btn-active ui-state-persist" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
+                    <li><a href="#page-results" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                </ul>
+
+            </div>
         </div>
         <div data-role="content">
             <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" alt="AXti.me Logo" /></div>
@@ -203,7 +229,8 @@
                 <li>Loading...</li>
             </ul>
         </div>
-        <div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
+        <!--
+		<div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
             <div data-role="navbar" class="custom-icons">
                 <ul>
                     <li><a href="#dlg-carsearch" class="nb-carsearch"  data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
@@ -213,7 +240,9 @@
                 </ul>
 
             </div>
-        </div>  
+        </div> 
+		-->
+		
     </div>
 
     <div data-role="page" id="page-ttod">
@@ -223,12 +252,23 @@
             <h1>Top Times Of the Day</h1>
 			<!-- <a id="refresh-button" data-role="button" data-ajax="false" data-icon="refresh" data-theme="b">Refresh</a> -->
 			<!-- <a href="#page-ttod" data-role="button" data-icon="arrow-l" data-reverse="true">Refresh</a> -->
+            <div data-role="navbar" class="custom-icons">
+                <ul>
+                    <li><a href="#dlg-carsearch" class="nb-carsearch" data-rel="dialog" data-role="button" data-transition="none" data-icon="custom">Car Search</a></li>
+                    <li><a href="#page-ttod" class="nb-ttod ui-btn-active ui-state-persist" data-role="button" data-transition="none" data-icon="custom">TTOD</a></li>
+                    <li><a href="#page-runs" class="nb-runs" data-role="button" data-transition="none" data-icon="custom">Runs</a></li>
+                    <li><a href="/redirect" class="nb-results" data-transition="none" data-icon="custom">Results</a></li>
+                </ul>
+
+            </div>			
         </div>
         <div data-role="content">
             <div class="logo-horiz"><img src="/images/axtime-logo-horizontal.png" alt="AXti.me Logo" /></div>
             <p id="P3" class="ui-li-desc details" style="margin-top:4px;margin-left:6px;margin-bottom:20px"># of Runs: <strong><span id="ttodruncount"></span></strong> -  Updated: <strong><span id="ttodlastupdated" class="lastpoll"></span></strong></p>
             <div><ul id="ttodresults" data-role="listview" data-divider-theme="e"><li>Loading...</li></ul></div>
         </div>
+		
+		<!--
         <div data-role="footer" data-position="fixed" data-id="footerbar" class="custom-icons">
             <div data-role="navbar" class="custom-icons">
                 <ul>
@@ -239,7 +279,9 @@
                 </ul>
 
             </div>
-        </div>  
+        </div> 
+		-->
+		
     </div>
     <script type="text/javascript">
         var lastpoll = 'na', totalruns = 0, loaded = [false, false, false], showRuns = 35, selectedDriverId = 0, previousDriverId = 0;
