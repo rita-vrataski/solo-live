@@ -339,9 +339,10 @@ function genRuns() {
         //var s = '<li data-theme="' + (r.isDnf ? 'a' : r.getRerun ? 'e' : '') + '"><a href="/driver?cn=' + r.car.number + '&dn=' + r.driver + '" data-ajax="false">'
         var s = '<li data-theme="' + (r.isDnf ? 'a' : r.getRerun ? 'e' : '') + '"><a id="run-' + r.runNumber + '-' + r.driverId + '">'
             + '<div class="rankcontainer" style="float:left;margin-right:12px;text-align:center;"><span class="rank">' + r.runNumber + '</span></div>'
-            + '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.car.number + '</div>'
-            + '<h3 class="ui-li-heading">' + r.driver + ' - ' + r.time + '</h3>'
-            + '<p class="ui-li-desc">Cones: <strong>' + r.cones + '</strong>, PAX: <strong>' + r.timepaxed + '</strong>, Class: <strong>' + r.axclass + '</strong></p>';
+            //+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.car.number + '</div>'
+			+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.time + '</div>'
+            + '<h3 class="ui-li-heading">' + r.driver + ' - ' + r.axclass + ' ' + r.car.number + '</h3>'
+            + '<p class="ui-li-desc">' +  r.car.description + '<br>Cones: <strong>' + r.cones + '</strong>, PAX: <strong>' + r.timepaxed + '</strong><br></p>';
         if (r.isDnf) {
             s += '<p class="ui-li-count">DNF</p>';
         } else if (r.getRerun) {
