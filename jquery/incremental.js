@@ -78,7 +78,7 @@ function toggleResults() {
             sortClass(selectedClass);
             $('#classlist').hide();
 			$('#btn-selectclass').show();
-            $('#resulttimes').hide();
+            $('#resulttimes').show();
 			
 			$('#btn-raw').html('<a href="#" id="btn-raw" data-theme="e" class="btn-results">' + Overall + '</a>');
 			$('#btn-class').html('<a href="#" id="btn-class" data-theme="e" class="ui-btn-active btn-results">' + Class + '</a>');
