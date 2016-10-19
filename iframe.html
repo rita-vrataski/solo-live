@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html style="overflow: hidden;">
+<html >
 <head>
 <style type="text/css">
-#container {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    width: 400px;
-    height: 100%;
-    overflow: hidden;
+body {
+  position: relative;
+  background: #f0f0f0;
+  height:100%;
 }
-#iframe {
-    width: 400px;
-    height: 100%;
+
+#frame_holder {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: #ffffff;
+}
+
+#my_frame {
+  width: 100%;
+  height: 300px; 
+  min-height: 100%;
+  border: 1px solid #e0e0e0;
 }
 </style>
 </head>
-<body style="overflow: hidden; ">
+<body>
 
 
-<div style="overflow:auto;-webkit-overflow-scrolling:touch" id=container>
-  <iframe src="http://solo-live.herokuapp.com/redirect" id=iframe style="width:100%; height:100%;">
+<div style="overflow:auto;-webkit-overflow-scrolling:touch" id=frameholder>
+  <iframe src="http://solo-live.herokuapp.com/redirect" id=myframe >
   </iframe>
 </div>
 
