@@ -342,7 +342,7 @@ function genRuns() {
             //+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.car.number + '</div>'
 			+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.time + '</div>'
             + '<h3 class="ui-li-heading">' + r.driver + ' - ' + r.axclass + ' ' + r.car.number + '</h3>'
-            + '<p class="ui-li-desc">' +  r.car.description + '<br>Cones: <strong>' + r.cones + '</strong>, PAX: <strong>' + r.timepaxed + '</strong><br></p><span class="ui-li-count">Cones:' + r.cones + ' </span>';
+            + '<p class="ui-li-desc">' +  r.car.description + '<br>PAX: <strong>' + r.timepaxed + '</strong><br></p><span class="ui-li-count">' + (r.cones > 1 ? r.cones + ' cones' : (  r.cones == 1 ? r.cones + ' cone' : 'Clean' )  )  + ' </span>';
         if (r.isDnf) {
             s += '<p class="ui-li-count">DNF</p>';
         } else if (r.getRerun) {
