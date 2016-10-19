@@ -110,7 +110,7 @@ function parse(line) {
                             else if (z == 'class') { r.axclass = v; }
                             else if (z == 'number') { r.car.number = v; }
 							//else if (z == 'tm') { r.rawtime = parseFloat(v); }
-                            else if (z == 'tm') { r.rawtime = parseFloat(v).toFixed(3); }
+                            else if (z == 'tm') { r.rawtime = parseFloat(v); }
                             else if (z == 'penalty') {
                                 if (v == 'DNF') { r.isDnf = true; }
 								else if (v == 'DNS') { r.isDnf = true; }
