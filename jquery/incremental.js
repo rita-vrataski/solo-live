@@ -222,6 +222,9 @@ function genDriver(driver) {
     $('#driver-lastupdated').text(lastpoll);
     $('#driver-runcount').text(driver.runCount);
     $('#driverinfo').html('<strong>' + driver.name + '</strong> ' + driver.axclass + ' ' + driver.car.number  );
+
+    
+	selectedClass = driver.axclass;
 	
 	/*
 	$('#refresh-driver').click(function() {
