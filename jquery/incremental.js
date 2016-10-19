@@ -143,11 +143,8 @@ function showDriver() {
 function refreshDriver() {
     console.log('refresh DRIVER: ' + selectedDriverId + ', count: ' + drivers.length);
 	
-	
-	
-    $('#driver-lastupdated').text(lastpoll);
+	$('#driver-lastupdated').text(lastpoll);
     var driver = null;
-	
 	
 	for (var i = 0; i < drivers.length; i++) {
 		
@@ -157,8 +154,6 @@ function refreshDriver() {
         }
     }
 	
-	
-    
 	
 	/*
 		$.ajax({
