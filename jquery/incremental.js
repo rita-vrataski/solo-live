@@ -207,7 +207,7 @@ function refreshDriver() {
 					} 
 					
 					//if (driver.best == r.time) {
-                    if (driver.bestpax == r.timepaxed) {
+                    if (driver.best == r.time) {
                         theme = ' data-theme="b" data-icon="check"';
                     }
                     html.push('<li' + theme + '><a href="#">' + r.rawtime.toFixed(3) + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');

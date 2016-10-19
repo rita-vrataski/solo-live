@@ -330,7 +330,7 @@ function genstats(pr) {
             driver.bestpax = run.timepaxed;
         }*/
 		
-        if ( driver.bestpax < run.timepaxed  && !run.isDnf && !run.getRerun && (maxRunsCounted == 0 || driver.runCount < maxRunsCounted)) {
+        if ( driver.best < run.time  && !run.isDnf && !run.getRerun && (maxRunsCounted == 0 || driver.runCount < maxRunsCounted)) {
             driver.best = run.time;
             driver.bestpax = run.timepaxed;
         }
