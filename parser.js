@@ -127,8 +127,8 @@ function parse(line) {
                                 r.tod = parseInt(v);
                                 todFound = true;
                             }
-							//else if (z == 'paxed') { r.timepaxed = parseFloat(v); }
-                            else if (z == 'paxed') { r.timepaxed = parseFloat(v).toFixed(3); }
+							else if (z == 'paxed') { r.timepaxed = parseFloat(v); }
+                            //else if (z == 'paxed') { r.timepaxed = parseFloat(v).toFixed(3); }
                         }
                     }
                 }
@@ -136,7 +136,8 @@ function parse(line) {
             //determine super classes
             r.superClass = getSuperClass(r.axclass);
 
-            r.time = ((r.cones * secondsPerCone) + r.rawtime).toFixed(3);
+            r.time = (r.cones * secondsPerCone) + r.rawtime;
+			//r.time = ((r.cones * secondsPerCone) + r.rawtime).toFixed(3);
             if (r.timepaxed == NaN || r.timepaxed == null) { r.timepaxed = r.time; }
             if (!todFound && !useTod) { return null; }
             if (r.driver.length == 0) { return null; }
@@ -265,12 +266,12 @@ function genstats(pr) {
 
         if (!run.isDnf && !run.getRerun) {
             if (ttodr.value > run.time && run.time > 0) {
-                ttodr = new ttoditem(run.driver, run.car, run.axclass, run.time, 'Raw Time');
+                ttodr = new ttoditem(run.driver, run.car, run.axclass, (run.time).toFixed(3), 'Raw Time');
             }
             if (ttodp.value > run.timepaxed && run.timepaxed > 0) {
-                ttodp = new ttoditem(run.driver, run.car, run.axclass, run.timepaxed, 'PAX Time');
+                ttodp = new ttoditem(run.driver, run.car, run.axclass, (run.timepaxed).toFixed(3), 'PAX Time');
             }
-			
+			/*
             if (run.axclass.indexOf('L') == -1) {
                 if (ttodm.value > run.time) {
                     ttodm = new ttoditem(run.driver, run.car, run.axclass, run.time, "Men's Time");
@@ -290,7 +291,7 @@ function genstats(pr) {
             if (run.axclass == 'FUN' && ttodfun.value > run.time) {
                 ttodfun = new ttoditem(run.driver, run.car, run.axclass, run.time, "Fun");
             }
-
+			*/
         }
 
         //lookup master driver
@@ -330,7 +331,9 @@ function genstats(pr) {
             driver.bestpax = run.timepaxed;
         }*/
 		
-        if ( driver.bestpax > run.timepaxed  && !run.isDnf && !run.getRerun && (maxRunsCounted == 0 || driver.runCount < maxRunsCounted)) {
+        //if ( driver.bestpax > run.timepaxed) {
+		//if ( (driver.bestpax > run.timepaxed)  && !run.isDnf && !run.getRerun ) {
+		if ( (driver.bestpax > run.timepaxed)  && !run.isDnf && !run.getRerun && (maxRunsCounted == 0 || driver.runCount < maxRunsCounted)) {
             driver.best = run.time;
             driver.bestpax = run.timepaxed;
         }

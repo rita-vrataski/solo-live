@@ -112,7 +112,8 @@ function genTtod() {
         var c = ttod[i];
         html += '<li data-role="list-divider">' + c.category + '</li>';
         //html += '<li><a href="/drivertimes?n=' + c.car.number + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + c.car.number + '</div><span class="ui-li-aside">' + c.value + '</span><h3 class="ui-li-heading">' + c.driver + '</h3><p>' + c.car.description + ' </p></a></li>';
-        html += '<li><a id="ttod-' + i + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + c.car.number + '</div><span class="ui-li-aside">' + c.value + '</span><h3 class="ui-li-heading">' + c.driver + '</h3><p>' + c.car.description + ' </p></a></li>';
+        html += '<li><a id="ttod-' + i + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' +  c.value + '</div><span class="ui-li-aside"></span><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
+		
     }
     $('#ttodresults').html(html).listview('refresh').find('a').click(function () {
         var ix = parseInt($(this).attr('id').split('-')[1]);
@@ -207,7 +208,7 @@ function refreshDriver() {
 					} 
 					
 					//if (driver.best == r.time) {
-                    if (driver.best == r.time) {
+                    if (driver.bestpax == r.timepaxed && !r.getRerun && !r.isDnf) {
                         theme = ' data-theme="b" data-icon="check"';
                     }
                     html.push('<li' + theme + '><a href="#">' + r.rawtime.toFixed(3) + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');
@@ -405,13 +406,16 @@ function genRuns() {
         var s = '<li data-theme="' + (r.isDnf ? 'a' : r.getRerun ? 'e' : '') + '"><a id="run-' + r.runNumber + '-' + r.driverId + '">'
             + '<div class="rankcontainer" style="float:left;margin-right:12px;text-align:center;"><span class="rank">' + r.runNumber + '</span></div>'
             //+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.car.number + '</div>'
-			+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.time + '</div>'
-            + '<h3 class="ui-li-heading">' + r.driver + ' - ' + r.axclass + ' ' + r.car.number + '</h3>'
-            + '<p class="ui-li-desc">' +  r.car.description + '<br>PAX: <strong>' + r.timepaxed + '</strong><br></p>' + ( r.isDnf ? '' : '<span class="ui-li-count">' + (r.cones > 1 ? r.cones + ' cones' : (  r.cones == 1 ? r.cones + ' cone' : 'Clean' )  )  + ' </span>');
-        if (r.isDnf) {
-            s += '<p class="ui-li-count">DNF</p>';
+			+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.time.toFixed(3) + '</div>'
+            + '<h3 class="ui-li-heading">' + r.driver + ' <font style="font-weight:normal;">' + r.axclass + ' ' + r.car.number + '</font></h3>' 
+            + '<p class="ui-li-desc">' +  r.car.description + '<br>PAX: <strong>' + r.timepaxed.toFixed(3) + '</strong><br></p>' + ( ( r.getRerun || r.isDnf ||  r.cones == 0  ) ? ' ' : '<span class="ui-li-count">' + (r.cones == 1 ? r.cones + ' cone' : r.cones + ' cones' ) + ' </span>' ) ;
+        
+		if (r.isDnf) {
+			
+            //s += '<p class="ui-li-count">&nbsp;DNF&nbsp;</p>';
+			s += '<span class="ui-li-count">&nbsp;DNF&nbsp;</span>';
         } else if (r.getRerun) {
-            s += '<p class="ui-li-count">RERUN</p>';
+            s += '<span class="ui-li-count">RERUN</span>';
         }
 
         s += '</a></li>';
