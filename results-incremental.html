@@ -406,7 +406,7 @@
             //p = participant record
             return html = '<li id="p-' + p.id + '" class="' + (p.rankp == 0 ? 'paxexclude' : '') + ' ' + (p.ranko == 0 ? 'rawexclude' : '') + '"><a>'
                 //+ '<div class="carnumber">' + p.car.number + '</div>'
-				+ '<div class="carnumber rawtime">' + p.best + '</div>'
+				+ '<div class="carnumber">' + '<span class="testing paxtime">' + p.bestpax +'</span><span class="testing rawtime">' + p.best +'</span></div>'
                 + '<div style="float:left;margin-right:12px;text-align:center;">'
                 + '<span class="rank rawrank">' + p.ranko + '</span>'
                 + '<span class="rank paxrank" style="color:red;">' + p.rankp + '</span>'
