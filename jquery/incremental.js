@@ -222,9 +222,21 @@ function genDriver(driver) {
     $('#driver-lastupdated').text(lastpoll);
     $('#driver-runcount').text(driver.runCount);
     $('#driverinfo').html('<strong>' + driver.name + '</strong> ' + driver.axclass + ' ' + driver.car.number  );
-
+	
+	$('#driverclass').empty();
+        var cl = driver.axclass
+        var li = $('<li id="cls||' + cl + '"><a class="ui-btn ui-btn-up-c">' + cl + '</a></li>')
+            .bind('click', function () {
+                var clc = $(this).attr('id').split('||')[1];
+                selectedClass = clc;
+                $('#classlist').hide();
+                $('#btn-selectclass').show();
+                $('#resulttimes').show();
+                sortClass(clc);
+            });
+        $('#driverclass').append(li);
     
-	selectedClass = driver.axclass;
+	
 	
 	/*
 	$('#refresh-driver').click(function() {
