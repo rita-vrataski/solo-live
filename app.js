@@ -168,7 +168,7 @@ app.get('/driverdata', function (req, res) {
 app.get('/redirect', function (req, res) {
         
 		//res.sendFile(__dirname + '/iframe.html');
-        res.sendFile(__dirname + '/results-incremental.html');
+        res.sendFile(__dirname + '/results-incremental.html#page-runs');
 		
 		
 		
