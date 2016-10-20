@@ -282,7 +282,8 @@ io.sockets.on('connection', function (socket) {
     settings.activeSockets++;
     console.log('Connected: ' + settings.activeSockets);
     
-    //socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
+	//Did I comment this out?
+    socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
 
     socket.on('join-runs', function (d) {
 		
