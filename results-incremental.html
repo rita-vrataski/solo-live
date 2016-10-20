@@ -448,6 +448,7 @@
             activePage = 'runs';
 			loaded[0] = true;
 			
+			socket.on('results', handleResults);
 			socket.on('ttod', handleTtod);
 			socket.on('runs', handleRuns);
 			
@@ -464,7 +465,7 @@
 			socket.emit('results', { doit: true });
 			socket.emit('ttod', { doit: true });
 			
-			//socket.on('results', handleResults);
+			
 			//socket.on('ttod', handleTtod);
 			
 			
