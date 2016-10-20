@@ -238,7 +238,7 @@ function genDriver(driver) {
     $('#drivername').text(driver.name);
     $('#driver-lastupdated').text(lastpoll);
     $('#driver-runcount').text(driver.runCount);
-    $('#driverinfo').html('<font size=20px><strong>' + driver.name + '</strong> ' + driver.axclass + ' ' + driver.car.number + '<br>' + driver.car.description + '</font>'  );
+    $('#driverinfo').html('<font size=16px><strong>' + driver.name + '</strong> ' + driver.axclass + ' ' + driver.car.number + '<br>' + driver.car.description + '</font>'  );
 	
 	
 	// Added a button for this
@@ -407,8 +407,8 @@ function genRuns() {
         var r = runs[i];
         //var s = '<li data-theme="' + (r.isDnf ? 'a' : r.getRerun ? 'e' : '') + '"><a href="/driver?cn=' + r.car.number + '&dn=' + r.driver + '" data-ajax="false">'
         var s = '<li data-theme="' + (r.isDnf ? 'a' : r.getRerun ? 'e' : '') + '"><a id="run-' + r.runNumber + '-' + r.driverId + '">'
-			+ '<div class="rankcontainer" style="float:left;margin-right:12px;text-align:center;"><span class="rank">' + r.runNumber + '</span></div>'
-			//+ '<div class="carnumber"><span class="classrank">' + r.runNumber + '</span></div>'
+			//+ '<div class="rankcontainer" style="float:left;margin-right:12px;text-align:center;"><span class="rank">' + r.runNumber + '</span></div>'
+			+ '<div class="carnumber"><span class="classrank">' + r.runNumber + '</span></div>'
             
             //+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.car.number + '</div>'
 			//+ '<div style="position:absolute;font-size:50px;opacity:.3;right:0%;font-style:italic;">' + r.time.toFixed(3) + '</div>'
