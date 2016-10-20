@@ -461,6 +461,7 @@
 			socket.emit('results', { doit: true });
 			socket.emit('ttod', { doit: true });
             socket.emit('init-results');
+			socket.on('ttod', handleTtod);
 			//socket.on('ttod', handleTtod);
 			
 			
