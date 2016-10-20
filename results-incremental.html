@@ -448,8 +448,8 @@
             activePage = 'runs';
 			loaded[0] = true;
 			
-			//socket.on('results', handleResults);
-			//socket.on('ttod', handleTtod);
+			socket.on('results', handleResults);
+			socket.on('ttod', handleTtod);
 			socket.on('runs', handleRuns);
 			socket.on('ttod', handleTtod);
 			
@@ -458,7 +458,7 @@
 			//this was already commented out
             socket.emit('init-runs', { doit: true });
             socket.emit('init-results');
-			socket.emit('results', { doit: true });
+			//socket.emit('results', { doit: true });
 			
 			//Added this
 			
