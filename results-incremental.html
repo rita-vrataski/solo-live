@@ -460,7 +460,8 @@
 			
 			//Added this
 			
-			socket.emit('ttod', { doit: true });
+			socket.emit('ttod');
+			//socket.emit('ttod', { doit: true });
 			socket.emit('init-results');
 			socket.emit('results', { doit: true });
 			
