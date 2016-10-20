@@ -454,11 +454,12 @@
             
 			
 			//Added this
-			socket.emit('init-results');
+			
 			//socket.on('results', handleResults);
 			socket.emit('results', { doit: true });
 			socket.emit('ttod', { doit: true });
-            //socket.on('ttod', handleTtod);
+            socket.emit('init-results');
+			//socket.on('ttod', handleTtod);
 			
 			
 			
