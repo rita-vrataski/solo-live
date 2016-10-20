@@ -461,7 +461,7 @@
 			socket.emit('init-results');
 			socket.emit('results', { doit: true });
 			//socket.emit('ttod', { doit: true });
-			//socket.on('ttod', handleTtod);
+			socket.on('ttod', handleTtod);
 			//socket.on('results', handleResults);
 			//socket.on('ttod', handleTtod);
 			
@@ -663,6 +663,7 @@
             popClasses();
             //console.log(data);
             //genTimeChanges(data);
+			$('#lastupdated').text(lastpoll);
             $('.lastpoll').text(lastpoll);
             $('#results-runcount').text(totalruns);
             //populateDriverSearch();
