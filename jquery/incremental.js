@@ -411,12 +411,12 @@ function genRuns() {
 			//+ '<div class="carnumber"><span class="classrank">' + r.runNumber + '</span></div>'
             
             //+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.car.number + '</div>'
-			+ '<div style="position:absolute;font-size:50px;opacity:.3;right:0%;font-style:italic;">' + r.time.toFixed(3) + '</div>'
+			+ '<div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + r.time.toFixed(3) + '</div>'
 			//+ '<div class="carnumber"><span class="classrank">' +  r.time.toFixed(3) + '</span></div>'
 			
 			//+ '<h3 class="ui-li-heading">' + r.driver + ' <font style="font-weight:normal;">' + r.axclass + ' ' + r.car.number + '</font></h3>' 
             + '<h3 class="ui-li-heading">' + r.driver + '</h3>' 
-            + '<p class="ui-li-desc">' +  r.car.description + '<br><strong>' + r.axclass + ' ' + r.car.number  + '</strong> </p>' + ( ( r.getRerun || r.isDnf ||  r.cones == 0  ) ? ' ' : '<span class="ui-li-count">' + (r.cones == 1 ? r.cones + ' cone' : r.cones + ' cones' ) + ' </span>' ) ;
+            + '<p class="ui-li-desc">' +  r.car.description + '<br><strong>' + r.axclass + ' ' + r.car.number  + '</strong></p>' + ( ( r.getRerun || r.isDnf ||  r.cones == 0  ) ? ' ' : '<span class="ui-li-count">' + (r.cones == 1 ? r.cones + ' cone' : r.cones + ' cones' ) + ' </span>' ) ;
         
 		if (r.isDnf) {
 			
