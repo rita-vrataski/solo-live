@@ -238,8 +238,9 @@ function genDriver(driver) {
     $('#drivername').text(driver.name);
     $('#driver-lastupdated').text(lastpoll);
     $('#driver-runcount').text(driver.runCount);
-    $('#driverinfo').html('<H1>' + driver.name + '</h1><font style="font-weight: bold;"> ' + driver.axclass + ' ' + driver.car.number + '</font> ' + driver.car.description  );
-	
+    //$('#driverinfo').html('<H1>' + driver.name + '</h1><font style="font-weight: bold;"> ' + driver.axclass + ' ' + driver.car.number + '</font> ' + driver.car.description  );
+	$('#driverinfo').html('<strong>' + driver.name + '</strong><br><strong>' + driver.axclass + ' ' + driver.car.number + '</strong> ' + driver.car.description  );
+
 	
 	// Added a button for this
 	
