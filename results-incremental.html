@@ -444,7 +444,7 @@
 			
         $('#page-runs').bind('pageshow', function () {
             activePage = 'runs';
-			
+			loaded[0] = true;
 			socket.on('runs', handleRuns);
 			
             socket.emit('join-runs');
@@ -455,9 +455,10 @@
 			
 			//Added this
 			socket.emit('init-results');
+			socket.emit('results', { doit: true });
 			socket.emit('ttod', { doit: true });
-            socket.on('ttod', handleTtod);
-			
+            //socket.on('ttod', handleTtod);
+			//socket.on('results', handleResults);
 			
             console.log('listening for runs');
         });
