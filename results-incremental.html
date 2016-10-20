@@ -455,7 +455,7 @@
 			
 			//Added this
 			socket.emit('init-results');
-			//socket.emit('results', { doit: true });
+			socket.emit('results', { doit: true });
 			socket.emit('ttod', { doit: true });
             socket.on('ttod', handleTtod);
 			//socket.on('results', handleResults);
