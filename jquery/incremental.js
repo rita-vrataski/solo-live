@@ -401,7 +401,7 @@ function genRuns() {
 
     max = max < 0 ? 0 : max;
 
-    html.push('<li data-role="list-divider" class="ui-li-heading">Last ' + showRuns + ' Runs</li>');
+    html.push('<li data-role="list-divider"><font size=24px>Last ' + showRuns + ' Runs</font></li>');
 
     for (var i = cnt - 1; i >= max; i--) {
         var r = runs[i];
