@@ -455,6 +455,8 @@
 			
 			//Added this
 			socket.emit('init-results');
+			socket.emit('ttod', { doit: true });
+            socket.on('ttod', handleTtod);
 			
 			
             console.log('listening for runs');
