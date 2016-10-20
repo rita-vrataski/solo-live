@@ -440,11 +440,12 @@
             activePage = 'runs';
 			
 			//Added this
-			//socket.emit('init-results');
+			socket.emit('init-results');
 			
             socket.emit('join-runs');
+			
 			//this was already commented out
-            //socket.emit('init-runs', { doit: true });
+            socket.emit('init-runs', { doit: true });
             socket.on('runs', handleRuns);
             console.log('listening for runs');
         });
