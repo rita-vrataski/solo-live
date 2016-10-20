@@ -462,15 +462,9 @@
 			
 			socket.emit('ttod', { doit: true });
 			//socket.emit('init-results');
-			//socket.emit('results', { doit: true });
-			
-			
-			
+			socket.emit('results', { doit: true });
 			//socket.on('ttod', handleTtod);
-			
-			
-			
-            console.log('listening for runs');
+			console.log('listening for runs');
         });
 		
 
