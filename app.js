@@ -283,12 +283,12 @@ io.sockets.on('connection', function (socket) {
     console.log('Connected: ' + settings.activeSockets);
     
 	//Did I comment this out?
-    socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
+    //socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
 
     socket.on('join-runs', function (d) {
 		
 		//ADDED THIS
-		//socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
+		socket.emit('init-results', { drivers: data.drivers, lastpoll: data.poller.lastpoll.formatDate('hh:mm:ss t'), runcount: data.runs.length });
 		
         socket.join('runs');
         var last20 = [], runCount = data.runs.length;
