@@ -455,7 +455,7 @@
             socket.emit('join-runs');
 			
 			//this was already commented out
-            //socket.emit('init-runs', { doit: true });
+            socket.emit('init-runs', { doit: true });
             socket.emit('init-results');
 			
 			//Added this
