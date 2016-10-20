@@ -209,8 +209,7 @@ ul.class-select li a
       ul.class-select li a {line-height:60px;font-size:24px;}
       
 }
-@media (max-width:599px)
-{
+
     .rankcontainer
     {
         float:none;
@@ -218,8 +217,11 @@ ul.class-select li a
     }
     .rankcontainer span.rank
     {
-        font-size: 35px;
+        font-size: 50px;
     }
+	
+	@media (max-width:599px)
+{
     .driver-ranks
     {
         font-size:26px;
