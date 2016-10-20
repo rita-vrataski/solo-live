@@ -455,15 +455,14 @@
             socket.emit('join-runs');
 			
 			//this was already commented out
-            //socket.emit('init-runs', { doit: true });
+            socket.emit('init-runs', { doit: true });
             
 			
 			//Added this
 			
-			socket.emit('ttod');
 			//socket.emit('ttod', { doit: true });
-			socket.emit('init-results');
-			socket.emit('results', { doit: true });
+			//socket.emit('init-results');
+			//socket.emit('results', { doit: true });
 			
 			
 			
