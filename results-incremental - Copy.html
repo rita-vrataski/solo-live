@@ -415,7 +415,7 @@
         });
         $('#page-results').bind('pageinit', function () {
             activePage = 'results';
-            //loaded[0] = true;
+            loaded[0] = true;
             $('#btn-selectclass').hide();
             $('#classlist').hide();
             $("#btn-showdetails").click(toggleDetails);
@@ -442,34 +442,7 @@
 
             //socket.on('changes', handleChanges);
         });
-/*
-		$('#page-runs').bind('pageinit', function () {
-            activePage = 'runs';
-			loaded[0] = true;
-			socket.on('runs', handleRuns);
-			
-            socket.emit('join-runs');
-			
-			//this was already commented out
-            //socket.emit('init-runs', { doit: true });
-            
-			
-			//Added this
-			
 
-			socket.emit('init-results');
-			socket.emit('results', { doit: true });
-			socket.emit('ttod', { doit: true });
-			//socket.on('ttod', handleTtod);
-			//socket.on('results', handleResults);
-			//socket.on('ttod', handleTtod);
-			
-			
-			
-            console.log('listening for runs');
-        });
-	*/
-	
 		$('#page-runs').bind('pageshow', function () {
             activePage = 'runs';
 			loaded[0] = true;
@@ -495,7 +468,32 @@
 			
             console.log('listening for runs');
         });
-		
+	
+        $('#page-runs').bind('pageshow', function () {
+            activePage = 'runs';
+			loaded[0] = true;
+			socket.on('runs', handleRuns);
+			
+            socket.emit('join-runs');
+			
+			//this was already commented out
+            //socket.emit('init-runs', { doit: true });
+            
+			
+			//Added this
+			
+
+			socket.emit('init-results');
+			socket.emit('results', { doit: true });
+			//socket.emit('ttod', { doit: true });
+			socket.on('ttod', handleTtod);
+			//socket.on('results', handleResults);
+			//socket.on('ttod', handleTtod);
+			
+			
+			
+            console.log('listening for runs');
+        });
 
         $('#page-runs').bind('pagehide', function () {
             socket.emit('leave-runs');
