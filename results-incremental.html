@@ -448,8 +448,8 @@
             activePage = 'runs';
 			loaded[0] = true;
 			
-			socket.on('results', handleResults);
-			socket.on('ttod', handleTtod);
+			//socket.on('results', handleResults);
+			//socket.on('ttod', handleTtod);
 			socket.on('runs', handleRuns);
 			
             socket.emit('join-runs');
