@@ -214,7 +214,7 @@ function refreshDriver() {
                     if (driver.bestpax == r.timepaxed && !r.getRerun && !r.isDnf) {
                         theme = ' data-theme="b" data-icon="check"';
                     }
-                    html.push('<li' + theme + '><a href="#">' + r.rawtime.toFixed(3) + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');
+                    html.push('<li' + theme + '><a href="#">' + r.rawtime.toFixed(3) + ' (' + r.timepaxed.toFixed(3)  + ')' + r.cones + '</a></li>');
 					//html.push('<li' + theme + '><a href="#">' + r.time + ' (' + r.timepaxed  + ')' + r.cones + '</a></li>');
                     //html.push('<li' + theme + '><a href="#">' + r.time + ' (' + r.timepaxed  + ')<span class="ui-li-count">' + r.cones + '</span></a></li>');
                 }
