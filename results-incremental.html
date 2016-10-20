@@ -439,14 +439,18 @@
         $('#page-runs').bind('pageshow', function () {
             activePage = 'runs';
 			
-			//Added this
-			socket.emit('init-results');
+			socket.on('runs', handleRuns);
 			
             socket.emit('join-runs');
 			
 			//this was already commented out
-            socket.emit('init-runs', { doit: true });
-            socket.on('runs', handleRuns);
+            //socket.emit('init-runs', { doit: true });
+            
+			
+			//Added this
+			socket.emit('init-results');
+			
+			
             console.log('listening for runs');
         });
 
