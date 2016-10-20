@@ -455,13 +455,13 @@
             socket.emit('join-runs');
 			
 			//this was already commented out
-            socket.emit('init-runs', { doit: true });
-            
+            //socket.emit('init-runs', { doit: true });
+            socket.emit('init-results');
 			
 			//Added this
 			
 			socket.emit('ttod', { doit: true });
-			//socket.emit('init-results');
+			
 			socket.emit('results', { doit: true });
 			//socket.on('ttod', handleTtod);
 			console.log('listening for runs');
