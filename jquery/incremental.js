@@ -110,7 +110,7 @@ function genTtod() {
     var html = '';
     for (var i = 0; i < ttod.length; i++) {
         var c = ttod[i];
-        html += '<li data-role="list-divider" class="ui-li-heading">' + c.category + '</li>';
+        html += '<li data-role="list-divider" class="ui-li-desc">' + c.category + '</li>';
         //html += '<li><a href="/drivertimes?n=' + c.car.number + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + c.car.number + '</div><span class="ui-li-aside">' + c.value + '</span><h3 class="ui-li-heading">' + c.driver + '</h3><p>' + c.car.description + ' </p></a></li>';
 		//html += '<li><a id="ttod-' + i + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' +  c.value + '</div><span class="ui-li-aside"></span><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
         html += '<li><a id="ttod-' + i + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' +  c.value + '</div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
@@ -399,7 +399,7 @@ function genRuns() {
 
     max = max < 0 ? 0 : max;
 
-    html.push('<li data-role="list-divider" class="ui-li-heading">Last ' + showRuns + ' Runs</li>');
+    html.push('<li data-role="list-divider" class="ui-li-desc">Last ' + showRuns + ' Runs</li>');
 
     for (var i = cnt - 1; i >= max; i--) {
         var r = runs[i];
