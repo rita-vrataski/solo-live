@@ -440,7 +440,11 @@
             activePage = 'runs';
 			
 			//Added this
-			socket.emit('init-results');
+			if (!loaded[0]) {
+                socket.emit('results', { doit: true });
+                socket.on('results', handleResults);
+            }
+			//socket.emit('init-results');
 			
             socket.emit('join-runs');
 			//this was already commented out
