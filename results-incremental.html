@@ -348,6 +348,7 @@
                 .delay(100);
             socket.emit('init-results');
 			
+			
         });
 
         socket.on('connect', function () { if (reconnectmsg != null) { $('.msg-reconnect').fadeOut(400, function () { $(this).remove(); }); } });
@@ -701,6 +702,22 @@
                
                 $('#resulttimes').append(li);
             }
+			
+			///############ UPDATE RUNS
+			handleRuns();
+			$('#runslist').empty().html(html.join('')).listview('refresh').find('a').bind('click', showDriverFromRun);
+			
+			/*
+			$('#resulttimes').empty();
+            for (var i = 0; i < data.drivers.length; i++) {
+                var html = getResultHtml(data.drivers[i]);
+                var li = $(html)
+                    .data('driver', data.drivers[i])
+                    .bind('click',showDriver);
+               
+                $('#resulttimes').append(li);
+            }*/
+			
             popClasses();
             if (sort == 'pax') sortPax();
             else if (sort == 'class') { sortClass(selectedClass); }
