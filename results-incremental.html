@@ -359,6 +359,7 @@
         });
 
 		
+		socket.on('runs',handleRuns)
         socket.on('init-results', handleInitResults);
 
         socket.on('changes', handleChanges);
@@ -406,10 +407,8 @@
 
         $('#page-ttod').bind('pagebeforeshow', function () {
             //console.log('ttod before show');
+            socket.emit('ttod', { doit: true });
             socket.on('ttod', handleTtod);
-			
-			socket.emit('ttod', { doit: true });
-            
             activePage = 'ttod';
         });
 
