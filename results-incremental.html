@@ -415,7 +415,7 @@
         });
         $('#page-results').bind('pageinit', function () {
             activePage = 'results';
-            //loaded[0] = true;
+            loaded[0] = true;
             $('#btn-selectclass').hide();
             $('#classlist').hide();
             $("#btn-showdetails").click(toggleDetails);
@@ -446,7 +446,7 @@
 	
 		$('#page-runs').bind('pageshow', function () {
             activePage = 'runs';
-			loaded[0] = true;
+			//loaded[0] = true;
 			
 			//socket.on('results', handleResults);
 			//socket.on('ttod', handleTtod);
