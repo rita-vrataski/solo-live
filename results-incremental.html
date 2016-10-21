@@ -359,15 +359,12 @@
         });
 
 		
-		socket.on('runs',handleRuns)
+		
         socket.on('init-results', handleInitResults);
 
         socket.on('changes', handleChanges);
 		
-		//Added these lines
-		socket.on('runs',handleRuns)
-		socket.on('ttod', handleTtod);
-
+		
         //        $('#page-ttod').bind('pageinit', function () {
         //            console.log('ttod init');
         //        });
