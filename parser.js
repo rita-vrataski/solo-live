@@ -415,8 +415,10 @@ function genstats(pr) {
             ttodrr = new ttoditem(drv.name, drv.car, drv.axclass, drv.reruns, "Got Practice (Reruns)");
         }
     }
-
-	data.ttod = [ttodr, ttodp, ttodck, ttodlost, ttodrr];
+	
+	// Removed the Lost in the Woods DNF reference here
+	data.ttod = [ttodr, ttodp, ttodck, ttodrr];
+	//data.ttod = [ttodr, ttodp, ttodck, ttodlost, ttodrr];
     //data.ttod = [ttodr, ttodp, ttodm, ttodw, ttodss, ttodfun, ttodck, ttodlost, ttodrr];
     fs.readFile('data.json', 'utf8', function (err, djson) {
         var dt = new Date();
