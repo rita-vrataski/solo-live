@@ -255,8 +255,11 @@ function genstats(pr) {
     var ttodck = new ttoditem('-', null, '', 0, 'Cone Killer');
     var ttodlost = new ttoditem('-', null, '', 0, 'Most DNFs');
     var ttodrr = new ttoditem('-', null, '', 0, 'Most Reruns');
-	var ttodsc = new ttoditem('-', null, '', 0, 'Stiffest Competition');
-	var ttodmi = new ttoditem('-', null, '', 0, 'Most Improved Rookie');
+	var ttodsc = new ttoditem('-', null, '', 99999, 'Stiffest Competition');
+	var ttodmir = new ttoditem('-', null, '', 0, 'Most Improved Rookie');
+	var ttodmi = new ttoditem('-', null, '', 0, 'Most Improved');
+	var ttodtwin1 = new ttoditem('-', null, '', 0, 'Twinsies');
+	var ttodtwin2 = new ttoditem('-', null, '', 0, 'Twinsies');
 
 
     var ttods = [];
@@ -408,6 +411,11 @@ function genstats(pr) {
             }
         }
     }
+	
+	
+	// do class ranking
+	//drivers = parsers.rankClass3(drivers);
+	
 
     // do alerts
 
@@ -420,6 +428,7 @@ function genstats(pr) {
 
     data.drivers = drivers;
 
+	drivers = parsers.rankClass3(drivers);
     //loop through
     for (var i = 0; i < drivers.length; i++) {
         var drv = drivers[i];
@@ -434,24 +443,31 @@ function genstats(pr) {
         }
 		
 		var improvement = drv.worst - drv.best;
-		// Most improved driver
-		if (ttodmi.value < (drv.worst - drv.best) && drv.worst > 0 && drv.axclass == "RK") {
-		//if (ttodmi.value < drv.worst && drv.worst > 0 && drv.best) {
-			ttodmi = new ttoditem(drv.name, drv.car, drv.axclass, (drv.worst - drv.best).toFixed(3), 'Most Improved Rookie');
+		// Most improved rookie
+		if (ttodmir.value < (drv.worst - drv.best) && drv.worst > 0 && drv.axclass == "RK") {
+			ttodmir = new ttoditem(drv.name, drv.car, drv.axclass, (drv.worst - drv.best).toFixed(3), 'Most Improved Rookie');
 
+		}
+		
+		// Most improved driver
+		if (ttodmi.value < (drv.worst - drv.best) && drv.worst > 0 && drv.axclass != "RK") {
+			ttodmi = new ttoditem(drv.name, drv.car, drv.axclass, (drv.worst - drv.best).toFixed(3), 'Most Improved');
 		}
 		
 		// Stiffest Competition
 		// If classdiff is smaller than ttodsc and not zero
-		if (ttodsc.value > drv.classDiffo && drv.classDiffo > 0) {
-			ttodsc = new ttoditem(drv.name, drv.car, drv.axclass, (drv.classDiffo).toFixed(3), 'Stiffest Competition');
-					
+		
+		if (ttodsc.value > drv.classDiffp && drv.classDiffp > 0) {
+			var otherDriver = drivers[i-1];
+			var competition = otherDriver.name + ' and ' + drv.name;
+			ttodsc = new ttoditem( competition, drv.rankc, drv.axclass, (drv.classDiffp).toFixed(3), 'Stiffest Competition');
+			
 		}
 		
     }
 	
 	// Removed the Lost in the Woods DNF reference here
-	data.ttod = [ttodr, ttodp, ttodck, ttodmi, ttodrr ];
+	data.ttod = [ttodr, ttodp, ttodck, ttodsc, ttodmir, ttodmi, ttodrr ];
 	//data.ttod = [ttodr, ttodp, ttodck, ttodlost, ttodrr];
     //data.ttod = [ttodr, ttodp, ttodm, ttodw, ttodss, ttodfun, ttodck, ttodlost, ttodrr];
     fs.readFile('data.json', 'utf8', function (err, djson) {
@@ -573,7 +589,9 @@ var parsers = {
             }
         }
         return ds;
-    }
+    } // End rankclass3 function
+	
+	
     , 'rankClass2': function (drivers) {
         var ds = drivers;
         ds.sort(function (a, b) {
@@ -602,7 +620,7 @@ var parsers = {
         }
 
         return ds;
-    }
+    } // End rankclass2 function
 };
 
 function rankClass2(drivers) {
