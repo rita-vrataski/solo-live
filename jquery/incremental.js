@@ -105,6 +105,12 @@ function toggleResults() {
     //setTimeout(genTimes, 1);
 }
 
+function getOrdinal(n) {
+   var s=["th","st","nd","rd"],
+       v=n%100;
+   return n+(s[(v-20)%10]||s[v]||s[0]);
+}
+
 function genTtod() {
 	
     var html = '';
@@ -114,21 +120,56 @@ function genTtod() {
         //html += '<li><a href="/drivertimes?n=' + c.car.number + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' + c.car.number + '</div><span class="ui-li-aside">' + c.value + '</span><h3 class="ui-li-heading">' + c.driver + '</h3><p>' + c.car.description + ' </p></a></li>';
 		//html += '<li><a id="ttod-' + i + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' +  c.value + '</div><span class="ui-li-aside"></span><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
 		//html += '<li><a id="ttod-' + i + '"><div style="position:absolute;font-size:50px;opacity:.3;right:20%;font-style:italic;">' +  c.value + '</div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
-        html += '<li><a id="ttod-' + i + '"><div class="carnumber"><span class="classrank">' +  c.value + '</span></div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
-		
+		if (c.category == "Stiffest Competition") {
+			// Go to class 
+			var rankPlace = c.car - 1;
+			var ordinalPlace = getOrdinal(rankPlace);
+			html += '<li><a id="ttodClass-' + i + '"><div class="carnumber"><span class="classrank">+' +  c.value + '</span></div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + '' + ' ' + '' + '</font></h3><p>Fighting for ' + ordinalPlace +' place in ' + c.axclass + ' Class</p></a></li>';
+		} else if (c.category == "Most Improved Rookie") {
+			html += '<li><a id="ttod-' + i + '"><div class="carnumber"><span class="classrank">-' +  c.value + '</span></div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
+		} else if (c.category == "Most Improved") {
+			html += '<li><a id="ttod-' + i + '"><div class="carnumber"><span class="classrank">-' +  c.value + '</span></div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
+		} else if (c.category == "Twinsies"){
+			html += '<li><a id="ttod-' + i + '"><div class="carnumber"><span class="classrank">' +  c.value + '</span></div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
+			i++;
+			c=ttod[i];
+			html += '<li><a id="ttod-' + i + '"><div class="carnumber"><span class="classrank">' +  c.value + '</span></div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
+		} else {
+			html += '<li><a id="ttod-' + i + '"><div class="carnumber"><span class="classrank">' +  c.value + '</span></div><h3 class="ui-li-heading">' + c.driver + ' <font style="font-weight:normal;">' + c.axclass + ' ' +c.car.number + '</font></h3><p>' + c.car.description + ' </p></a></li>';
+		}
 		
     }
     $('#ttodresults').html(html).listview('refresh').find('a').click(function () {
         var ix = parseInt($(this).attr('id').split('-')[1]);
-        var run = ttod[ix];
-        for (var i = 0; i < drivers.length; i++) {
-            if (drivers[i].name == run.driver && drivers[i].car.number == run.car.number) {
-                selectedDriverId = drivers[i].id;
-                activePage = 'driver';
-				$.mobile.changePage('#page-driver');
-                refreshDriver();
-            }
-        }
+		var ttodType = ($(this).attr('id').split('-')[0]);
+		
+		var run = ttod[ix];
+		if (ttodType == "ttod") {
+			
+			for (var i = 0; i < drivers.length; i++) {
+				if (drivers[i].name == run.driver && drivers[i].car.number == run.car.number) {
+					selectedDriverId = drivers[i].id;
+					activePage = 'driver';
+					$.mobile.changePage('#page-driver');
+					refreshDriver();
+				}
+			}
+			
+		} else {
+		
+			// Go to class listing from Stiffest Competition
+			//var li = $('<li id="cls||' + cl + '"><a class="ui-btn ui-btn-up-c">' + cl + '</a></li>')
+            //.bind('click', function () {
+                //var clc = $(this).attr('id').split('||')[1];
+				var clc = run.axclass
+                selectedClass = clc;
+                $('#classlist').hide();
+                $('#btn-selectclass').show();
+                $('#resulttimes').show();
+				$.mobile.changePage('#page-results');
+                sortClass(clc);
+            //});
+		}
     });
     $('#ttodlastupdated').text(lastpoll);
     $('#ttodruncount').text(totalruns);
