@@ -381,8 +381,8 @@ function genstats(pr) {
         if (drivers[i].axclass.substring(0, 3).toLowerCase() != 'fun' && drivers[i].bestpax > 0) {
             if (besto == 0) { besto = drivers[i].bestpax; bestp = besto; }
             drivers[i].rankp = rank;
-            drivers[i].paxDiffo = Math.floor((drivers[i].bestpax - besto) * 1000) / 1000;
-            drivers[i].paxDiffp = Math.floor((drivers[i].bestpax - bestp) * 1000) / 1000;
+            drivers[i].paxDiffo = (drivers[i].bestpax - besto).toFixed(3);
+            drivers[i].paxDiffp = (drivers[i].bestpax - bestp).toFixed(3);
             bestp = drivers[i].bestpax;
             rank++;
         }
@@ -404,15 +404,29 @@ function genstats(pr) {
             if (configuration.allowFunInOverall || (!configuration.allowFunInOverall && drivers[i].axclass.substring(0, 3).toLowerCase() != 'fun')) {
                 if (besto == 0) { besto = drivers[i].best; bestp = besto; }
                 drivers[i].ranko = rank;
-                drivers[i].rawDiffo = Math.floor((drivers[i].best - besto) * 1000) / 1000;
-                drivers[i].rawDiffp = Math.floor((drivers[i].best - bestp) * 1000) / 1000;
+				//drivers[i].rawDiffo = Math.floor((drivers[i].best - besto) * 1000) / 1000;
+                //drivers[i].rawDiffp = Math.floor((drivers[i].best - bestp) * 1000) / 1000;
+                drivers[i].rawDiffo = (drivers[i].best - besto).toFixed(3);
+                drivers[i].rawDiffp = (drivers[i].best - bestp).toFixed(3);
                 bestp = drivers[i].best;
                 rank++;
             }
         }
     }
 	
-	
+	for (var i = 0; i < drivers.length; i++) {
+        var drv = drivers[i];
+		if(drv.rawDiffp == 0 && drv.rawDiffo != 0){
+			
+			ttodtwin2 = new ttoditem(drv.name, drv.car, drv.axclass, drv.best.toFixed(3), 'Twinsies');
+			
+			drv = drivers[i-1];
+			ttodtwin1 = new ttoditem(drv.name, drv.car, drv.axclass, drv.best.toFixed(3), 'Twinsies');
+		} else {
+			
+			
+		}
+	}
 	// do class ranking
 	//drivers = parsers.rankClass3(drivers);
 	
@@ -460,14 +474,14 @@ function genstats(pr) {
 		if (ttodsc.value > drv.classDiffp && drv.classDiffp > 0) {
 			var otherDriver = drivers[i-1];
 			var competition = otherDriver.name + ' and ' + drv.name;
-			ttodsc = new ttoditem( competition, drv.rankc, drv.axclass, (drv.classDiffp).toFixed(3), 'Stiffest Competition');
+			ttodsc = new ttoditem( competition, drv.rankc, drv.axclass, drv.classDiffp, 'Stiffest Competition');
 			
 		}
 		
     }
 	
 	// Removed the Lost in the Woods DNF reference here
-	data.ttod = [ttodr, ttodp, ttodck, ttodsc, ttodmir, ttodmi, ttodrr ];
+	data.ttod = [ttodr, ttodp, ttodck, ttodsc, ttodmir, ttodmi, ttodtwin1, ttodtwin2, ttodrr ];
 	//data.ttod = [ttodr, ttodp, ttodck, ttodlost, ttodrr];
     //data.ttod = [ttodr, ttodp, ttodm, ttodw, ttodss, ttodfun, ttodck, ttodlost, ttodrr];
     fs.readFile('data.json', 'utf8', function (err, djson) {
@@ -555,8 +569,8 @@ var parsers = {
                         cls = ds[i].superClass;
                     }
                     ds[i].rankc = rank;
-                    ds[i].classDiffo = Math.floor((ds[i].bestpax - besto) * 1000) / 1000;
-                    ds[i].classDiffp = Math.floor((ds[i].bestpax - bestp) * 1000) / 1000;
+                    ds[i].classDiffo = (ds[i].bestpax - besto).toFixed(3);
+                    ds[i].classDiffp = (ds[i].bestpax - bestp).toFixed(3);
                     bestp = ds[i].bestpax;
                     rank++;
                 }
@@ -581,8 +595,8 @@ var parsers = {
                         cls = ds[i].axclass;
                     }
                     ds[i].rankc = rank;
-                    ds[i].classDiffo = Math.floor((ds[i].best - besto) * 1000) / 1000;
-                    ds[i].classDiffp = Math.floor((ds[i].best - bestp) * 1000) / 1000;
+                    ds[i].classDiffo = (ds[i].best - besto).toFixed(3);
+                    ds[i].classDiffp = (ds[i].best - bestp).toFixed(3);
                     bestp = ds[i].best;
                     rank++;
                 }
@@ -612,8 +626,8 @@ var parsers = {
                     cls = ds[i].axclass;
                 }
                 ds[i].rankc = rank;
-                ds[i].classDiffo = Math.floor((ds[i].best - besto) * 1000) / 1000;
-                ds[i].classDiffp = Math.floor((ds[i].best - bestp) * 1000) / 1000;
+                ds[i].classDiffo = (ds[i].best - besto).toFixed(3);
+                ds[i].classDiffp = (ds[i].best - bestp).toFixed(3);
                 bestp = ds[i].best;
                 rank++;
             }
@@ -643,8 +657,8 @@ function rankClass2(drivers) {
                 cls = ds[i].axclass;
             }
             ds[i].rankc = rank;
-            ds[i].classDiffo = Math.floor((ds[i].best - besto) * 1000) / 1000;
-            ds[i].classDiffp = Math.floor((ds[i].best - bestp) * 1000) / 1000;
+            ds[i].classDiffo = (ds[i].best - besto).toFixed(3);
+            ds[i].classDiffp = (ds[i].best - bestp).toFixed(3);
             bestp = ds[i].best;
             rank++;
         }
