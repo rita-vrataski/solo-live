@@ -247,7 +247,7 @@ function genstats(pr) {
     var prevruns = pr;
     var classes = [];
     var ttodr = new ttoditem('-', null, '', 99999, 'FTD');
-    var ttodp = new ttoditem('-', null, '', 99999, 'PAX FTD');
+    var ttodp = new ttoditem('-', null, '', 99999, 'Top PAX');
     var ttodm = new ttoditem('-', null, '', 99999, "Men's Time");
     var ttodw = new ttoditem('-', null, '', 99999, "Women's Time");
     var ttodss = new ttoditem('-', null, '', 99999, 'Showroom Stock');
@@ -275,7 +275,7 @@ function genstats(pr) {
                 ttodr = new ttoditem(run.driver, run.car, run.axclass, (run.time).toFixed(3), 'FTD');
             }
             if (ttodp.value > run.timepaxed && run.timepaxed > 0) {
-                ttodp = new ttoditem(run.driver, run.car, run.axclass, (run.timepaxed).toFixed(3), 'PAX FTD');
+                ttodp = new ttoditem(run.driver, run.car, run.axclass, (run.timepaxed).toFixed(3), 'Top PAX');
             }
 			
 
