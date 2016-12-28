@@ -345,7 +345,13 @@ function genstats(pr) {
 		//if ( (driver.bestpax > run.timepaxed)  && !run.isDnf && !run.getRerun ) {
 			
 		// Calculate driver's worst time here
-		if ( (driver.worst < run.time)  && !run.isDnf && !run.getRerun && (maxRunsCounted == 0 || driver.runCount < maxRunsCounted) && ( driver.runCount > 1)) {
+		/*if ( (driver.worst < run.time)  && !run.isDnf && !run.getRerun && (maxRunsCounted == 0 || driver.runCount < maxRunsCounted) && ( driver.runCount > 1)) {
+            driver.worst = run.time;
+        } else {
+			driver.worst = 0;
+		}*/
+		
+		if ( (driver.worst == 0)  && !run.isDnf && !run.getRerun ) {
             driver.worst = run.time;
         } else {
 			driver.worst = 0;
