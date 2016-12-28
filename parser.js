@@ -351,11 +351,11 @@ function genstats(pr) {
 			driver.worst = 0;
 		}*/
 		
-		if ( (driver.worst == 0)  && !run.isDnf && !run.getRerun ) {
+		if ( (driver.worst == 0) && !run.isDnf && !run.getRerun ) {
             driver.worst = run.time;
-        } else {
-			driver.worst = 0;
-		}
+        }// else {
+		//	driver.worst = 0;
+		//}
 		
 		
 		if ( (driver.best > run.time)  && !run.isDnf && !run.getRerun && (maxRunsCounted == 0 || driver.runCount < maxRunsCounted)) {
