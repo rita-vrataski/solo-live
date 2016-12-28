@@ -182,7 +182,7 @@ function driverObj(id, name, cls, scls) {
     return {
         id: id, name: name, axclass: cls, superClass: scls, best: 9999, bestpax: 9999
         , runCount: 0, totalRuns: 0, dnfCount: 0, cones: 0, reruns: 0, car: { description: '', number: '', year: 0, color: '' }, ranko: 0, rankc: 0, rankp: 0//, times: []
-        , rawDiffo: 0, rawDiffp: 0, paxDiffo: 0, paxDiffp: 0, classDiffo: 0, classDiffp: 0, worst: 9999
+        , rawDiffo: 0, rawDiffp: 0, paxDiffo: 0, paxDiffp: 0, classDiffo: 0, classDiffp: 0, worst: 0
     };
 }
 
@@ -351,7 +351,7 @@ function genstats(pr) {
 			driver.worst = 0;
 		}*/
 		
-		if ( (driver.worst == 9999)  && !run.isDnf && !run.getRerun ) {
+		if ( (driver.worst == 0)  && !run.isDnf && !run.getRerun ) {
             driver.worst = run.time;
         } else {
 			driver.worst = 0;
