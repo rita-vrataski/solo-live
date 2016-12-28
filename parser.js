@@ -351,7 +351,7 @@ function genstats(pr) {
 			driver.worst = 0;
 		}*/
 		
-		if ( (driver.worst == 0)  && !run.isDnf && !run.getRerun ) {
+		if ( (driver.worst == 9999)  && !run.isDnf && !run.getRerun ) {
             driver.worst = run.time;
         } else {
 			driver.worst = 0;
