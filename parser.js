@@ -422,7 +422,7 @@ function genstats(pr) {
 	
 	for (var i = 0; i < drivers.length; i++) {
         var drv = drivers[i];
-		if(drv.rawDiffp == 0 && drv.rawDiffo != 0){
+		if(drv.rawDiffp == 0 && drv.rawDiffo != 0 && drv.best < 9000 ){
 			
 			ttodtwin2 = new ttoditem(drv.name, drv.car, drv.axclass, drv.best.toFixed(3), 'Twinsies');
 			
